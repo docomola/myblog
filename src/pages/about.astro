@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About - My Blog">
+  <article>
+    <h1>About Me</h1>
+    <p>Hello! I am a developer who loves building things with modern web technologies.</p>
+    <p>This blog is built with <strong>Astro</strong> and deployed on GitHub Pages.</p>
+    <a href="/myblog/">Back to Home</a>
+  </article>
+</Layout>
+
+<style>
+  article {
+    max-width: 600px;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #6366f1;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
