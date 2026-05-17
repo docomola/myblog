@@ -1,0 +1,59 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const posts = [
+  {
+    title: "Welcome to My Blog",
+    date: "2026-05-17",
+    description: "First post on my new Astro blog!"
+  }
+];
+---
+
+<Layout title="Blog - My Blog">
+  <h1>Blog</h1>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href="/myblog/blog/first-post">
+          <h2>{post.title}</h2>
+          <time>{post.date}</time>
+          <p>{post.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:hover h2 {
+    color: #6366f1;
+  }
+  h2 {
+    margin: 0 0 0.5rem;
+    transition: color 0.2s;
+  }
+  time {
+    color: #888;
+    font-size: 0.9rem;
+  }
+  p {
+    color: #555;
+  }
+</style>
