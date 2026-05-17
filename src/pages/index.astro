@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="My Blog - Home">
+  <section>
+    <h1>Welcome to My Blog</h1>
+    <p>This is my personal blog built with Astro.</p>
+    <a href="/myblog/blog">Read my posts</a>
+  </section>
+</Layout>
+
+<style>
+  section {
+    text-align: center;
+    padding: 3rem 0;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  a {
+    display: inline-block;
+    background: #6366f1;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+  a:hover {
+    background: #4f46e5;
+  }
+</style>
