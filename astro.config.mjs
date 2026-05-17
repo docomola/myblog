@@ -1,7 +1,4 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-
-export default defineConfig({
+export default {
   site: 'https://docomola.github.io',
   base: '/myblog',
-});
+};
