@@ -1,0 +1,76 @@
+baseURL = 'https://docomola.github.io/myblog/'
+theme = "mana"
+title = 'docomola 的博客'
+defaultContentLanguage = "zh"
+
+[pagination]
+  pageSize = 10
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+    ordered = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    noClasses = false
+    style = "catppuccin-macchiato"
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[params]
+  enableIntegrity = false
+  relatedPostsCount = 3
+  description = 'docomola 的个人技术博客'
+  author = "docomola"
+  heroTitleLine1 = "docomola"
+  heroTitleLine2 = "个人技术博客"
+  footerText = "Built with Hugo and Mana theme"
+
+  [params.social]
+    github = "https://github.com/docomola"
+    email = "133315191+tearjoker@users.noreply.github.com"
+
+  [params.codeHighlight]
+    darkTheme = "catppuccin-macchiato"
+    lightTheme = "catppuccin-frappe"
+
+  [params.copyright]
+    startYear = 2026
+    owner = "docomola"
+
+  [params.admonitions]
+    alertStyle = "favicon"
+
+[[menus.main]]
+  name = "首页"
+  pageRef = "/"
+  weight = 10
+
+[[menus.main]]
+  name = "文章"
+  pageRef = "/posts"
+  weight = 20
+
+[[menus.main]]
+  name = "标签"
+  pageRef = "/tags"
+  weight = 30
+
+[[menus.main]]
+  name = "关于"
+  url = "/about/"
+  weight = 40

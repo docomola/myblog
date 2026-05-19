@@ -1,35 +1,29 @@
 +++
-title = "Compose"
-[data]
-baseChartOn = 3
-colors = ["#627c62", "#11819b", "#ef7f1a", "#4e1154"]
-columnTitles = ["Section", "Status", "Author"]
-fileLink = "content/projects.csv"
-title = "Projects"
+title = "首页"
+description = "docomola 的个人技术博客"
 +++
 
-{{< block "grid-2" >}}
-{{< column >}}
+# 欢迎来到我的博客！
 
-# Compose your Docs with **Ease**.
+这里是 **docomola** 的个人技术博客，使用 Hugo + Mana 主题搭建。
 
-Compose is a lean `Hugo` documentation theme, inspired by [forestry.io](https://web.archive.org/web/20190331052103/https://forestry.io/docs/welcome/)(now TinaCMS).
+## 关于这个博客
 
-Compose ships with tina cms [configuration](docs/compose/use-tina-cms/).
+- 📝 记录技术学习心得
+- 🔧 分享开发与运维经验
+- 🌍 发布日常生活记录
 
-{{< tip "warning" >}}
-Feel free to open a [PR](https://github.com/onweru/compose/pulls), raise an [issue](https://github.com/onweru/compose/issues/new/choose "Open a Github Issue")(s) or request new feature(s). {{< /tip >}}
+## 技术栈
 
-{{< tip >}}
-You can generate diagrams, flowcharts, and piecharts from text in a similar manner as markdown using [mermaid](./docs/compose/mermaid/).
+- **静态站点生成器**：Hugo Extended
+- **主题**：Mana
+- **部署平台**：GitHub Pages
+- **版本控制**：Git + GitHub
 
-Or, [generate graphs, charts](docs/compose/graphs-charts-tables/#show-a-pie-doughnut--bar-chart-at-once) and tables from a csv, ~~or a json~~ file.
-{{< /tip >}}
+> 感谢访问，欢迎常来！
 
-{{< button "docs/compose/" "Read the Docs" >}}{{< button "https://github.com/onweru/compose" "Download Theme" >}}
-{{< /column >}}
+---
 
-{{< column >}}
-![diy](images/scribble.jpg)
-{{< /column >}}
-{{< /block >}}
+### 最新文章
+
+前往 [文章列表](/posts/) 查看所有文章。

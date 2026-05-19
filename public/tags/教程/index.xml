@@ -1,20 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教程 on My Blog</title><link>https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on My Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello Hugo</title><link>https://docomola.github.io/myblog/posts/hello-hugo/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/posts/hello-hugo/</guid><description>&lt;h1 id="欢迎来到我的-hugo-博客" class=link_owner>
- 欢迎来到我的 Hugo 博客！
- &lt;a href="#%e6%ac%a2%e8%bf%8e%e6%9d%a5%e5%88%b0%e6%88%91%e7%9a%84-hugo-%e5%8d%9a%e5%ae%a2" class="link icon">
- &lt;svg>
- &lt;use xlink:href="#anchor-link">&lt;/use>
- &lt;/svg>
- &lt;/a>
-&lt;/h1>
-&lt;p>这是使用 &lt;strong>Hugo + Compose 主题&lt;/strong> 搭建的个人博客的第一篇文章。&lt;/p>
-&lt;h2 id="为什么选择-hugo" class=link_owner>
- 为什么选择 Hugo？
- &lt;a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%89%e6%8b%a9-hugo" class="link icon">
- &lt;svg>
- &lt;use xlink:href="#anchor-link">&lt;/use>
- &lt;/svg>
- &lt;/a>
-&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教程 on docomola 的博客</title><link>https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on docomola 的博客</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello Hugo</title><link>https://docomola.github.io/myblog/posts/hello-hugo/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/posts/hello-hugo/</guid><description>&lt;h1 id="欢迎来到我的-hugo-博客">欢迎来到我的 Hugo 博客！&lt;/h1>
+&lt;p>这是使用 &lt;strong>Hugo + Mana 主题&lt;/strong> 搭建的个人博客的第一篇文章。&lt;/p>
+&lt;h2 id="为什么选择-hugo">为什么选择 Hugo？&lt;/h2>
 &lt;p>Hugo 是一个非常快速的静态站点生成器，具有以下优点：&lt;/p>
 &lt;ul>
 &lt;li>⚡ &lt;strong>极速构建&lt;/strong> — 数千篇文章也能在毫秒级完成构建&lt;/li>
@@ -22,41 +8,31 @@
 &lt;li>📝 &lt;strong>内容优先&lt;/strong> — 使用 Markdown 写作，专注内容创作&lt;/li>
 &lt;li>🌍 &lt;strong>丰富的主题生态&lt;/strong> — 社区提供了大量免费主题&lt;/li>
 &lt;/ul>
-&lt;h2 id="compose-主题特点" class=link_owner>
- Compose 主题特点
- &lt;a href="#compose-%e4%b8%bb%e9%a2%98%e7%89%b9%e7%82%b9" class="link icon">
- &lt;svg>
- &lt;use xlink:href="#anchor-link">&lt;/use>
- &lt;/svg>
- &lt;/a>
-&lt;/h2>
-&lt;p>Compose 是一个专为文档类网站设计的 Hugo 主题：&lt;/p>
+&lt;h2 id="mana-主题特点">Mana 主题特点&lt;/h2>
+&lt;p>Mana 是一个简洁优雅的 Hugo 博客主题：&lt;/p>
 &lt;ol>
-&lt;li>简洁现代的 UI 设计&lt;/li>
-&lt;li>内置深色模式支持&lt;/li>
-&lt;li>响应式布局，移动端友好&lt;/li>
-&lt;li>支持 Mermaid 图表渲染&lt;/li>
-&lt;li>内置搜索功能&lt;/li>
+&lt;li>响应式设计，移动端友好&lt;/li>
+&lt;li>支持深色模式&lt;/li>
+&lt;li>内置文章搜索功能&lt;/li>
+&lt;li>支持代码高亮（Catppuccin 主题）&lt;/li>
+&lt;li>简洁的卡片式文章列表&lt;/li>
 &lt;/ol>
-&lt;h2 id="示例代码" class=link_owner>
- 示例代码
- &lt;a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81" class="link icon">
- &lt;svg>
- &lt;use xlink:href="#anchor-link">&lt;/use>
- &lt;/svg>
- &lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">hello_hugo&lt;/span>&lt;span class="p">():&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello, Hugo!&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;欢迎来到我的博客！&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">&lt;span class="n">hello_hugo&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="接下来" class=link_owner>
- 接下来
- &lt;a href="#%e6%8e%a5%e4%b8%8b%e6%9d%a5" class="link icon">
- &lt;svg>
- &lt;use xlink:href="#anchor-link">&lt;/use>
- &lt;/svg>
- &lt;/a>
-&lt;/h2>
-&lt;p>后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！&lt;/p></description></item></channel></rss>
+&lt;h2 id="示例代码">示例代码&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">hello_hugo&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello, Hugo!&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;欢迎来到我的博客！&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">hello_hugo&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="接下来">接下来&lt;/h2>
+&lt;p>后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！&lt;/p>
+
+
+
+
+
+
+
+
+&lt;blockquote class="blockquote-regular">
+ &lt;p>感谢阅读，如有问题欢迎留言讨论。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
