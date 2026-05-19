@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on My Blog</title><link>https://docomola.github.io/myblog/tags/hugo/</link><description>Recent content in Hugo on My Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello Hugo</title><link>https://docomola.github.io/myblog/posts/hello-hugo/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/posts/hello-hugo/</guid><description>&lt;h1 id="欢迎来到我的-hugo-博客" class=link_owner>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教程 on My Blog</title><link>https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on My Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello Hugo</title><link>https://docomola.github.io/myblog/posts/hello-hugo/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/posts/hello-hugo/</guid><description>&lt;h1 id="欢迎来到我的-hugo-博客" class=link_owner>
  欢迎来到我的 Hugo 博客！
  &lt;a href="#%e6%ac%a2%e8%bf%8e%e6%9d%a5%e5%88%b0%e6%88%91%e7%9a%84-hugo-%e5%8d%9a%e5%ae%a2" class="link icon">
  &lt;svg>
@@ -59,25 +59,4 @@
  &lt;/svg>
  &lt;/a>
 &lt;/h2>
-&lt;p>后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！&lt;/p></description></item><item><title>Getting Started with Hugo</title><link>https://docomola.github.io/myblog/blog/hugoisforlovers/</link><pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/blog/hugoisforlovers/</guid><description>&lt;h2 id="step-1-install-hugo" class=link_owner>
- Step 1. Install Hugo
- &lt;a href="#step-1-install-hugo" class="link icon">
- &lt;svg>
- &lt;use xlink:href="#anchor-link">&lt;/use>
- &lt;/svg>
- &lt;/a>
-&lt;/h2>
-&lt;p>Go to &lt;a href="https://github.com/spf13/hugo/releases">Hugo releases&lt;/a> and download the
-appropriate version for your OS and architecture.&lt;/p>
-&lt;p>Save it somewhere specific as we will be using it in the next step.&lt;/p>
-&lt;p>More complete instructions are available at &lt;a href="https://gohugo.io/getting-started/installing/">Install Hugo&lt;/a>&lt;/p>
-&lt;h2 id="step-2-build-the-docs" class=link_owner>
- Step 2. Build the Docs
- &lt;a href="#step-2-build-the-docs" class="link icon">
- &lt;svg>
- &lt;use xlink:href="#anchor-link">&lt;/use>
- &lt;/svg>
- &lt;/a>
-&lt;/h2>
-&lt;p>Hugo has its own example site which happens to also be the documentation site
-you are reading right now.&lt;/p></description></item></channel></rss>
+&lt;p>后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！&lt;/p></description></item></channel></rss>
