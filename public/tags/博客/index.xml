@@ -1,26 +1,64 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>博客 on docomola 的博客</title>
-    <link>http://localhost:1313/myblog/tags/%E5%8D%9A%E5%AE%A2/</link>
-    <description>Recent content in 博客 on docomola 的博客</description>
-    <generator>Hugo</generator>
-    <language>zh</language>
-    <lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/myblog/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Hello Hugo</title>
-      <link>http://localhost:1313/myblog/posts/hello-hugo/</link>
-      <pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate>
-      <guid>http://localhost:1313/myblog/posts/hello-hugo/</guid>
-      <description>&lt;h1 id=&#34;欢迎来到我的-hugo-博客&#34;&gt;欢迎来到我的 Hugo 博客！&lt;/h1&gt;&#xA;&lt;p&gt;这是使用 &lt;strong&gt;Hugo + Mana 主题&lt;/strong&gt; 搭建的个人博客的第一篇文章。&lt;/p&gt;&#xA;&lt;h2 id=&#34;为什么选择-hugo&#34;&gt;为什么选择 Hugo？&lt;/h2&gt;&#xA;&lt;p&gt;Hugo 是一个非常快速的静态站点生成器，具有以下优点：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;⚡ &lt;strong&gt;极速构建&lt;/strong&gt; — 数千篇文章也能在毫秒级完成构建&lt;/li&gt;&#xA;&lt;li&gt;🛠️ &lt;strong&gt;无需依赖&lt;/strong&gt; — 单个二进制文件，部署简单&lt;/li&gt;&#xA;&lt;li&gt;📝 &lt;strong&gt;内容优先&lt;/strong&gt; — 使用 Markdown 写作，专注内容创作&lt;/li&gt;&#xA;&lt;li&gt;🌍 &lt;strong&gt;丰富的主题生态&lt;/strong&gt; — 社区提供了大量免费主题&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;mana-主题特点&#34;&gt;Mana 主题特点&lt;/h2&gt;&#xA;&lt;p&gt;Mana 是一个简洁优雅的 Hugo 博客主题：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;响应式设计，移动端友好&lt;/li&gt;&#xA;&lt;li&gt;支持深色模式&lt;/li&gt;&#xA;&lt;li&gt;内置文章搜索功能&lt;/li&gt;&#xA;&lt;li&gt;支持代码高亮（Catppuccin 主题）&lt;/li&gt;&#xA;&lt;li&gt;简洁的卡片式文章列表&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;示例代码&#34;&gt;示例代码&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;hello_hugo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello, Hugo!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;欢迎来到我的博客！&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;hello_hugo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;接下来&#34;&gt;接下来&lt;/h2&gt;&#xA;&lt;p&gt;后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！&lt;/p&gt;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;blockquote class=&#34;blockquote-regular&#34;&gt;&#xD;&#xA;  &lt;p&gt;感谢阅读，如有问题欢迎留言讨论。&lt;/p&gt;&#xD;&#xA;&lt;/blockquote&gt;</description>
-    </item>
-    <item>
-      <title>为什么我的博客不需要评论区</title>
-      <link>http://localhost:1313/myblog/posts/no-comments/</link>
-      <pubDate>Fri, 15 May 2026 14:30:00 +0800</pubDate>
-      <guid>http://localhost:1313/myblog/posts/no-comments/</guid>
-      <description>&lt;h1 id=&#34;为什么我的博客不需要评论区&#34;&gt;为什么我的博客不需要评论区&lt;/h1&gt;&#xA;&lt;p&gt;个人博客的核心价值在于 &lt;strong&gt;内容本身&lt;/strong&gt;，而不是互动量。&lt;/p&gt;&#xA;&lt;h2 id=&#34;评论区的烦恼&#34;&gt;评论区的烦恼&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;垃圾评论&lt;/strong&gt; — 广告、爬虫、无意义内容&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;维护成本&lt;/strong&gt; — 需要审核、反垃圾、数据存储&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;注意力分散&lt;/strong&gt; — 写作时总想着互动数据&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;更好的替代方案&#34;&gt;更好的替代方案&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;📧 &lt;strong&gt;邮件联系&lt;/strong&gt; — 严肃的讨论用邮件&lt;/li&gt;&#xA;&lt;li&gt;💬 &lt;strong&gt;社交媒体&lt;/strong&gt; — 轻松互动在 Twitter/GitHub&lt;/li&gt;&#xA;&lt;li&gt;🔗 &lt;strong&gt;引用机制&lt;/strong&gt; — 其他人可以写文章回应&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;结论&#34;&gt;结论&lt;/h2&gt;&#xA;&lt;p&gt;去掉评论区，让博客回归 &lt;strong&gt;内容优先&lt;/strong&gt; 的本质。&lt;/p&gt;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;blockquote class=&#34;blockquote-regular&#34;&gt;&#xD;&#xA;  &lt;p&gt;如果你有话想说，发邮件给我：133315191+tearjoker@users.noreply.github.com&lt;/p&gt;&#xD;&#xA;&lt;/blockquote&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>博客 on docomola 的博客</title><link>https://docomola.github.io/myblog/tags/%E5%8D%9A%E5%AE%A2/</link><description>Recent content in 博客 on docomola 的博客</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello Hugo</title><link>https://docomola.github.io/myblog/posts/hello-hugo/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/posts/hello-hugo/</guid><description>&lt;h1 id="欢迎来到我的-hugo-博客">欢迎来到我的 Hugo 博客！&lt;/h1>
+&lt;p>这是使用 &lt;strong>Hugo + Mana 主题&lt;/strong> 搭建的个人博客的第一篇文章。&lt;/p>
+&lt;h2 id="为什么选择-hugo">为什么选择 Hugo？&lt;/h2>
+&lt;p>Hugo 是一个非常快速的静态站点生成器，具有以下优点：&lt;/p>
+&lt;ul>
+&lt;li>⚡ &lt;strong>极速构建&lt;/strong> — 数千篇文章也能在毫秒级完成构建&lt;/li>
+&lt;li>🛠️ &lt;strong>无需依赖&lt;/strong> — 单个二进制文件，部署简单&lt;/li>
+&lt;li>📝 &lt;strong>内容优先&lt;/strong> — 使用 Markdown 写作，专注内容创作&lt;/li>
+&lt;li>🌍 &lt;strong>丰富的主题生态&lt;/strong> — 社区提供了大量免费主题&lt;/li>
+&lt;/ul>
+&lt;h2 id="mana-主题特点">Mana 主题特点&lt;/h2>
+&lt;p>Mana 是一个简洁优雅的 Hugo 博客主题：&lt;/p>
+&lt;ol>
+&lt;li>响应式设计，移动端友好&lt;/li>
+&lt;li>支持深色模式&lt;/li>
+&lt;li>内置文章搜索功能&lt;/li>
+&lt;li>支持代码高亮（Catppuccin 主题）&lt;/li>
+&lt;li>简洁的卡片式文章列表&lt;/li>
+&lt;/ol>
+&lt;h2 id="示例代码">示例代码&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">hello_hugo&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello, Hugo!&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;欢迎来到我的博客！&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">hello_hugo&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="接下来">接下来&lt;/h2>
+&lt;p>后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！&lt;/p>
+
+
+
+
+
+
+
+
+&lt;blockquote class="blockquote-regular">
+ &lt;p>感谢阅读，如有问题欢迎留言讨论。&lt;/p>
+&lt;/blockquote></description></item><item><title>为什么我的博客不需要评论区</title><link>https://docomola.github.io/myblog/posts/no-comments/</link><pubDate>Fri, 15 May 2026 14:30:00 +0800</pubDate><guid>https://docomola.github.io/myblog/posts/no-comments/</guid><description>&lt;h1 id="为什么我的博客不需要评论区">为什么我的博客不需要评论区&lt;/h1>
+&lt;p>个人博客的核心价值在于 &lt;strong>内容本身&lt;/strong>，而不是互动量。&lt;/p>
+&lt;h2 id="评论区的烦恼">评论区的烦恼&lt;/h2>
+&lt;ol>
+&lt;li>&lt;strong>垃圾评论&lt;/strong> — 广告、爬虫、无意义内容&lt;/li>
+&lt;li>&lt;strong>维护成本&lt;/strong> — 需要审核、反垃圾、数据存储&lt;/li>
+&lt;li>&lt;strong>注意力分散&lt;/strong> — 写作时总想着互动数据&lt;/li>
+&lt;/ol>
+&lt;h2 id="更好的替代方案">更好的替代方案&lt;/h2>
+&lt;ul>
+&lt;li>📧 &lt;strong>邮件联系&lt;/strong> — 严肃的讨论用邮件&lt;/li>
+&lt;li>💬 &lt;strong>社交媒体&lt;/strong> — 轻松互动在 Twitter/GitHub&lt;/li>
+&lt;li>🔗 &lt;strong>引用机制&lt;/strong> — 其他人可以写文章回应&lt;/li>
+&lt;/ul>
+&lt;h2 id="结论">结论&lt;/h2>
+&lt;p>去掉评论区，让博客回归 &lt;strong>内容优先&lt;/strong> 的本质。&lt;/p>
+
+
+
+
+
+
+
+
+&lt;blockquote class="blockquote-regular">
+ &lt;p>如果你有话想说，发邮件给我：133315191+tearjoker@users.noreply.github.com&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

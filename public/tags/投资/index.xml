@@ -1,19 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>投资 on docomola 的博客</title>
-    <link>http://localhost:1313/myblog/tags/%E6%8A%95%E8%B5%84/</link>
-    <description>Recent content in 投资 on docomola 的博客</description>
-    <generator>Hugo</generator>
-    <language>zh</language>
-    <lastBuildDate>Mon, 18 May 2026 10:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/myblog/tags/%E6%8A%95%E8%B5%84/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>ETF 投资工具开发笔记</title>
-      <link>http://localhost:1313/myblog/posts/etf-tool/</link>
-      <pubDate>Mon, 18 May 2026 10:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/myblog/posts/etf-tool/</guid>
-      <description>&lt;h1 id=&#34;etf-投资工具开发笔记&#34;&gt;ETF 投资工具开发笔记&lt;/h1&gt;&#xA;&lt;p&gt;最近在开发一个 &lt;strong&gt;ETF 排序工具&lt;/strong&gt;，帮助快速筛选溢价率合理的 ETF 产品。&lt;/p&gt;&#xA;&lt;h2 id=&#34;功能特性&#34;&gt;功能特性&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;📊 实时排序（按溢价率、成交量、规模）&lt;/li&gt;&#xA;&lt;li&gt;🔍 关键词搜索&lt;/li&gt;&#xA;&lt;li&gt;📈 溢价率实时显示（修复了显示为0的 bug）&lt;/li&gt;&#xA;&lt;li&gt;💾 数据导出&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;技术实现&#34;&gt;技术实现&lt;/h2&gt;&#xA;&lt;p&gt;使用纯前端实现，数据来源于公开 API：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;async&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fetchETFData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;await&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fetch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;API_URL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;await&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;etf&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;etf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;premiumRate&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;下一步&#34;&gt;下一步&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;添加历史溢价率走势图&lt;/li&gt;&#xA;&lt;li&gt;支持自定义筛选条件&lt;/li&gt;&#xA;&lt;li&gt;移动端适配&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;blockquote class=&#34;blockquote-regular&#34;&gt;&#xD;&#xA;  &lt;p&gt;投资有风险，本文仅供参考。&lt;/p&gt;&#xD;&#xA;&lt;/blockquote&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>投资 on docomola 的博客</title><link>https://docomola.github.io/myblog/tags/%E6%8A%95%E8%B5%84/</link><description>Recent content in 投资 on docomola 的博客</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Mon, 18 May 2026 10:00:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/tags/%E6%8A%95%E8%B5%84/index.xml" rel="self" type="application/rss+xml"/><item><title>ETF 投资工具开发笔记</title><link>https://docomola.github.io/myblog/posts/etf-tool/</link><pubDate>Mon, 18 May 2026 10:00:00 +0800</pubDate><guid>https://docomola.github.io/myblog/posts/etf-tool/</guid><description>&lt;h1 id="etf-投资工具开发笔记">ETF 投资工具开发笔记&lt;/h1>
+&lt;p>最近在开发一个 &lt;strong>ETF 排序工具&lt;/strong>，帮助快速筛选溢价率合理的 ETF 产品。&lt;/p>
+&lt;h2 id="功能特性">功能特性&lt;/h2>
+&lt;ul>
+&lt;li>📊 实时排序（按溢价率、成交量、规模）&lt;/li>
+&lt;li>🔍 关键词搜索&lt;/li>
+&lt;li>📈 溢价率实时显示（修复了显示为0的 bug）&lt;/li>
+&lt;li>💾 数据导出&lt;/li>
+&lt;/ul>
+&lt;h2 id="技术实现">技术实现&lt;/h2>
+&lt;p>使用纯前端实现，数据来源于公开 API：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">async&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="nx">fetchETFData&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kr">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">API_URL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kr">await&lt;/span> &lt;span class="nx">res&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">json&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">etf&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="nx">etf&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">premiumRate&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="下一步">下一步&lt;/h2>
+&lt;ul>
+&lt;li>添加历史溢价率走势图&lt;/li>
+&lt;li>支持自定义筛选条件&lt;/li>
+&lt;li>移动端适配&lt;/li>
+&lt;/ul>
+
+
+
+
+
+
+
+
+&lt;blockquote class="blockquote-regular">
+ &lt;p>投资有风险，本文仅供参考。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
