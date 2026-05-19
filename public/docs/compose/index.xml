@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Compose Docs on My Blog</title><link>https://docomola.github.io/myblog/docs/compose/</link><description>Recent content in Compose Docs on My Blog</description><generator>Hugo</generator><language>en</language><atom:link href="https://docomola.github.io/myblog/docs/compose/index.xml" rel="self" type="application/rss+xml"/><item><title>Install theme</title><link>https://docomola.github.io/myblog/docs/compose/install-theme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/install-theme/</guid><description>&lt;h3 id="prerequisites" class=link_owner>
+ Prerequisites
+ &lt;a href="#prerequisites" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>First ensure that you have hugo installed.&lt;/p>
+&lt;p>You need a &lt;a href="https://github.com/gohugoio/hugo/releases">recent &lt;strong>extended&lt;/strong> version&lt;/a> (we recommend version 0.61 or later) of &lt;a href="https://gohugo.io/">Hugo&lt;/a> to do local builds and previews of sites (like this one) that uses this theme.&lt;/p>
+&lt;p>If you install from the release page, make sure to get the &lt;code>extended&lt;/code> Hugo version, which supports &lt;a href="https://sass-lang.com/documentation/file.SCSS_FOR_SASS_USERS.html">sass&lt;/a>; you may need to scroll down the list of releases to see it.&lt;/p></description></item><item><title>Use Tina.io CMS</title><link>https://docomola.github.io/myblog/docs/compose/use-tina-cms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/use-tina-cms/</guid><description>&lt;p>Would you like to make it easier for someone (a non-techie, perhaps) in your team to make edits easily?&lt;/p>
+&lt;p>You may skip to the &lt;a href="../organize-content/">next section&lt;/a>, if not interested.&lt;/p>
+&lt;p>Let's sync your site with Tina CMS.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Check the root of your site. If you do not have a &lt;code>tina&lt;/code> folder. Download it using this command.&lt;/p>
+&lt;pre tabindex="0">&lt;code>curl -fsSL https://raw.githubusercontent.com/onweru/compose/master/install-tina-cms.sh | bash
+&lt;/code>&lt;/pre>
+&lt;div class="tip">
+ &lt;pre>&lt;code>The exampleSite already comes with prefilled placeholder Tina settings. If you set up your site using [option 2](../install-theme/#option-2-recommended)
+&lt;/code>&lt;/pre>
+
+&lt;/div>
+
+&lt;/li>
+&lt;li>
+&lt;p>Update &lt;code>./tina/config.js&lt;/code> &amp;amp; &lt;code>.env&lt;/code> accordingly&lt;/p></description></item><item><title>Content organization</title><link>https://docomola.github.io/myblog/docs/compose/organize-content/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/organize-content/</guid><description>&lt;p>This theme is primarily meant for documentation.&lt;/p>
+&lt;h4 id="documentation" class=link_owner>
+ Documentation
+ &lt;a href="#documentation" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h4>
+&lt;p>By default, the theme will look for all your documentation content within the &lt;code>docs&lt;/code> directory.&lt;/p>
+&lt;p>However, if you would like to have your docs content across multiple directories, please list those directories inside &lt;code>config/_default/params.toml&lt;/code> under &lt;code>docSections&lt;/code> like so:&lt;/p>
+&lt;pre tabindex="0">&lt;code>...
+docSections = [&amp;#34;docs&amp;#34;, &amp;#34;tutorials&amp;#34;]
+...
+&lt;/code>&lt;/pre>&lt;p>Unlike other regular pages, the documentation pages will have a left sidebar. This sidebar will list links to all the pages in the documentation pages. Beneath each link, there will be a collapsible list of &lt;strong>table of contents'&lt;/strong> links. These nested lists will unfold automatically on the active/current page.&lt;/p></description></item><item><title>Shortcodes</title><link>https://docomola.github.io/myblog/docs/compose/shortcodes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/shortcodes/</guid><description>&lt;p>Instead of writing all your site pages from scratch, Hugo lets you define and use &lt;a href="https://gohugo.io/content-management/shortcodes/">shortcodes&lt;/a>.&lt;/p>
+&lt;p>Why shortcodes? While markdown is sufficient to produce simple pages, it's insufficient where complex page structures are needed. Thusly, whenever we need special styling, shortcodes compliment the shortcomings of markdown.&lt;/p>
+&lt;p>This way, you can side step complex html and css boilerplate in your content files.&lt;/p>
+&lt;p>Sometimes, the shortcode will wrap content, sometimes it won't. When content is wrapped, a closing shortcode tag is needed. Please see the link I provided above and the markdown files for examples. You'll get the gist pretty quickly.&lt;/p></description></item><item><title>Search Function</title><link>https://docomola.github.io/myblog/docs/compose/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/search/</guid><description>&lt;p>Firstly, ensure you have these lines inside your hugo.toml file&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">outputs&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="nx">home&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;HTML&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;RSS&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s2">&amp;#34;JSON&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Compose implements &lt;a href="https://fusejs.io/">Fuse js&lt;/a> or &lt;a href="https://www.algolia.com/doc/rest-api/search/">Algolia&lt;/a> to enable search functionality. By default Fuse is applied. Algolia can be enabled by adding this settings to &lt;code>config/_default/params.toml&lt;/code> file&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="c"># search&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">search&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="nx">on&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">&lt;span class="nx">global&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">search&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">algolia&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">&lt;span class="nx">enable&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span> &lt;span class="c"># if false search will default to fusejs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">&lt;span class="nx">id&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Q40WQQX84U&amp;#34;&lt;/span> &lt;span class="c"># Application ID&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl">&lt;span class="nx">index&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;compose&amp;#34;&lt;/span> &lt;span class="c"># Index name&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">9&lt;/span>&lt;span class="cl">&lt;span class="nx">key&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;da87401a458102ec6bbd6cc5e5cf8d95&amp;#34;&lt;/span> &lt;span class="c"># Search-Only API Key&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Both search engines will display results using the same UI. By choosing the default (.ie fuse js), you will be opting for local search. This way, no additional setup is needed.&lt;/p></description></item><item><title>Mermaid</title><link>https://docomola.github.io/myblog/docs/compose/mermaid/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/mermaid/</guid><description>&lt;p>&lt;a href="https://mermaidjs.github.io/">Mermaid&lt;/a> is library that helps you generate diagrams, flowcharts, and piecharts from text in a similar manner as markdown.&lt;/p>
+&lt;p>With compose theme, you can use mermaid using a custom shortcode as follows:&lt;/p>
+&lt;h3 id="sequence-diagrams" class=link_owner>
+ Sequence Diagrams
+ &lt;a href="#sequence-diagrams" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>&lt;strong>Snippet&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-tpl" data-lang="tpl">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="cp">{{&lt;/span>&lt;span class="o">&amp;lt;&lt;/span> &lt;span class="na">mermaid&lt;/span> &lt;span class="o">&amp;gt;&lt;/span>&lt;span class="cp">}}&lt;/span>&lt;span class="x">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">&lt;span class="x">sequenceDiagram
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">&lt;span class="x"> participant Alice
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">&lt;span class="x"> participant Bob
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">&lt;span class="x"> Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">&lt;span class="x"> loop Healthcheck
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">&lt;span class="x"> John-&amp;gt;&amp;gt;John: Fight against hypochondria
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">&lt;span class="x"> end
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">&lt;span class="x"> Note right of John: Rational thoughts&amp;lt;br/&amp;gt;prevail...
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">&lt;span class="x"> John--&amp;gt;&amp;gt;Alice: Great!
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">&lt;span class="x"> John-&amp;gt;&amp;gt;Bob: How about you?
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">&lt;span class="x"> Bob--&amp;gt;&amp;gt;John: Jolly good!
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl">&lt;span class="x">&lt;/span>&lt;span class="cp">{{&lt;/span>&lt;span class="o">&amp;lt;&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="na">mermaid&lt;/span> &lt;span class="o">&amp;gt;&lt;/span>&lt;span class="cp">}}&lt;/span>&lt;span class="x">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Result&lt;/strong>&lt;/p></description></item><item><title>Graphs, charts &amp; dynamic tables</title><link>https://docomola.github.io/myblog/docs/compose/graphs-charts-tables/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/graphs-charts-tables/</guid><description>&lt;p>Using &lt;a href="https://www.chartjs.org/">chart js library&lt;/a> you can display data you have stored in a &lt;code>csv&lt;/code> file as a pie chart, bar graph or doughnut chart.&lt;/p>
+&lt;p>At this point if you want to display data from a json or yaml file, you would need to &lt;a href="http://convertcsv.com/json-to-csv.htm">convert it into csv&lt;/a> first. Else the template will error out.&lt;/p>
+&lt;p>Once you have a csv file, you display the charts as follows:&lt;/p>
+&lt;h4 id="show-a-pie-doughnut--bar-chart-at-once" class=link_owner>
+ Show a pie, doughnut &amp;amp; bar chart at once
+ &lt;a href="#show-a-pie-doughnut--bar-chart-at-once" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h4>
+&lt;p>Firstly define the data you want to display from the front matter:&lt;/p></description></item><item><title>Customize layouts &amp; components</title><link>https://docomola.github.io/myblog/docs/compose/customize/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/customize/</guid><description>&lt;h3 id="shortcodes-modifiers" class=link_owner>
+ Shortcodes modifiers
+ &lt;a href="#shortcodes-modifiers" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>These modifiers are classes you can use with shortcodes to customize the look and feel of your layouts and components.&lt;/p>
+&lt;h4 id="grid" class=link_owner>
+ Grid
+ &lt;a href="#grid" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h4>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>modifier&lt;/th>
+ &lt;th>space&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>grid-2&lt;/td>
+ &lt;td>2 columns&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>grid-3&lt;/td>
+ &lt;td>3 columns&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>grid-4&lt;/td>
+ &lt;td>4 columns&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h4 id="spacing" class=link_owner>
+ Spacing
+ &lt;a href="#spacing" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h4>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>modifier&lt;/th>
+ &lt;th>space&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>mt-1&lt;/td>
+ &lt;td>1.5rem top margin&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>mt-2&lt;/td>
+ &lt;td>3rem top margin&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>mt-3&lt;/td>
+ &lt;td>4.5rem top margin&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>mt-4&lt;/td>
+ &lt;td>6rem top margin&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;blockquote>
+&lt;p>use pt-1 ~ pt-4 for top padding&lt;/p></description></item><item><title>Leverage Github actions</title><link>https://docomola.github.io/myblog/docs/compose/github-actions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/compose/github-actions/</guid><description>&lt;p>This theme ships with 2 github actions inside the exampleSite folder:&lt;/p>
+&lt;ol>
+&lt;li>AWS CI&lt;/li>
+&lt;li>Algolia CI&lt;/li>
+&lt;/ol>
+&lt;h2 id="aws-ci" class=link_owner>
+ AWS CI
+ &lt;a href="#aws-ci" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h2>
+&lt;p>This helps you to autodeploy your hugo website from github to an AWS s3 bucket. Set the secrets in the action accordingly and voila.&lt;/p>
+&lt;h2 id="algolia-ci" class=link_owner>
+ Algolia CI
+ &lt;a href="#algolia-ci" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h2>
+&lt;p>This action will automatically update your algolia search index. No extra npm manual setup will be needed.&lt;/p></description></item></channel></rss>

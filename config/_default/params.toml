@@ -39,13 +39,13 @@ key = ""
 
 # Site logo
 [logo]
-lightMode = "/images/compose.svg"
-darkMode = "/images/compose-light.svg"
+lightMode = "images/compose.svg"
+darkMode = "images/compose-light.svg"
 
 [source]
 name = "GitHub"
-iconLight = "/images/GitHubMarkLight.svg"
-iconDark = "/images/GitHubMarkDark.svg"
+iconLight = "images/GitHubMarkLight.svg"
+iconDark = "images/GitHubMarkDark.svg"
 url = "https://github.com/docomola/myblog"
 
 # optional

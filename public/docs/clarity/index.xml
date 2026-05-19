@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Clarity Docs on My Blog</title><link>https://docomola.github.io/myblog/docs/clarity/</link><description>Recent content in Clarity Docs on My Blog</description><generator>Hugo</generator><language>en</language><atom:link href="https://docomola.github.io/myblog/docs/clarity/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting started</title><link>https://docomola.github.io/myblog/docs/clarity/getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/clarity/getting-started/</guid><description>&lt;h2 id="prerequisites" class=link_owner>
+ Prerequisites
+ &lt;a href="#prerequisites" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Firstly, &lt;strong>ensure you have installed the &lt;a href="https://github.com/gohugoio/hugo/releases">extended version of Hugo&lt;/a>&lt;/strong>. See installation steps from &lt;a href="https://gohugo.io/getting-started/installing/">Hugo's official docs&lt;/a>.&lt;/p>
+&lt;h2 id="getting-up-and-running" class=link_owner>
+ Getting up and running
+ &lt;a href="#getting-up-and-running" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Read the &lt;a href="https://docomola.github.io/myblog/docs/clarity/getting-started/#prerequisites">prerequisites&lt;/a> above and verify you're using the extended version of Hugo. There are at least two ways of quickly getting started with Hugo and the VMware Clarity theme:&lt;/p>
+&lt;h3 id="option-1-recommended" class=link_owner>
+ Option 1 (recommended)
+ &lt;a href="#option-1-recommended" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>Generate a new Hugo site and add this theme as a Git submodule inside your themes folder:&lt;/p></description></item><item><title>Features</title><link>https://docomola.github.io/myblog/docs/clarity/features/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/clarity/features/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>Blog with tagging and category options&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Deeplinks&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Native Image Lazy Loading&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Customizable (see config)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Dark Mode (with UI controls for user preference setting)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Toggleable table of contents&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Flexible image configuration&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Logo alignment&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Mobile support with configurable menu alignment&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Syntax Highlighting&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Rich code block functions including:&lt;/p>
+&lt;ol>
+&lt;li>Copy to clipboard&lt;/li>
+&lt;li>Toggle line wrap (dynamic)&lt;/li>
+&lt;li>Toggle line numbers&lt;/li>
+&lt;li>Language label&lt;/li>
+&lt;li>Toggle block expansion/contraction (dynamic)&lt;/li>
+&lt;/ol>
+&lt;p>To put it all in context, here is a preview showing all functionality.&lt;/p></description></item><item><title>Customization</title><link>https://docomola.github.io/myblog/docs/clarity/customize/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/clarity/customize/</guid><description>&lt;h2 id="configuration" class=link_owner>
+ Configuration
+ &lt;a href="#configuration" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h2>
+&lt;p>If set, jump over to the &lt;code>config.toml&lt;/code> file and start &lt;a href="https://docomola.github.io/myblog/docs/clarity/customize/#configuration">configuring&lt;/a> your site.&lt;/p>
+&lt;p>This section will mainly cover settings that are unique to this theme. If something is not covered here (or elsewhere in this file), there's a good chance it is covered in &lt;a href="https://gohugo.io/getting-started/configuration/#configuration-file">this Hugo docs page&lt;/a>.&lt;/p>
+&lt;h3 id="global-parameters" class=link_owner>
+ Global Parameters
+ &lt;a href="#global-parameters" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>These options set global values that some pages or all pages in the site use by default.&lt;/p></description></item><item><title>Manipulating Images</title><link>https://docomola.github.io/myblog/docs/clarity/images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/clarity/images/</guid><description>&lt;h2 id="images" class=link_owner>
+ Images
+ &lt;a href="#images" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h2>
+&lt;h3 id="image-figure-captions" class=link_owner>
+ Image figure captions
+ &lt;a href="#image-figure-captions" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>You have the option of adding captions to images in blog posts and automatically prepending a desired string such as &amp;quot;Figure N&amp;quot; to the alt text. This is controlled via two global settings.&lt;/p>
+&lt;p>&lt;code>figurePositionLabel&lt;/code> is a string which will be prepended to any alt text of an article image. By default, this is set to &amp;quot;Figure.&amp;quot; And &lt;code>figurePositionShow&lt;/code> controls, globally, whether to show this label. It does not affect whether to show the image alt text, only the prefix figure caption. For more granular control, &lt;code>figurePositionShow&lt;/code> can be overridden at the article level if desired.&lt;/p></description></item><item><title>Blogging</title><link>https://docomola.github.io/myblog/docs/clarity/blogging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/clarity/blogging/</guid><description>&lt;h3 id="blog-directory" class=link_owner>
+ Blog directory
+ &lt;a href="#blog-directory" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>Edit the &lt;code>config.toml&lt;/code> file and change the &lt;code>blogDir&lt;/code> key. Value will be name of the folder where the blog articles reside.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="l">params]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nn">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="l">blogDir = &amp;#34;blog&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nn">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For more info, see the &lt;a href="https://gohugo.io/functions/where/#mainsections">Hugo docs&lt;/a>.&lt;/p>
+&lt;h3 id="mobile-menu-positioning" class=link_owner>
+ Mobile menu positioning
+ &lt;a href="#mobile-menu-positioning" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>The navigation menu when mobile browsing can be configured in &lt;code>config.toml&lt;/code> to open right or left depending on preference. The &amp;quot;hamburger&amp;quot; menu icon will always display in the upper right hand corner regardless.&lt;/p></description></item><item><title>Syntax Highlighting</title><link>https://docomola.github.io/myblog/docs/clarity/syntax-highlighting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/clarity/syntax-highlighting/</guid><description>&lt;h3 id="code" class=link_owner>
+ Code
+ &lt;a href="#code" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;h4 id="display-line-numbers" class=link_owner>
+ Display line numbers
+ &lt;a href="#display-line-numbers" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h4>
+&lt;p>Choose whether to display line numbers within a code block globally with the parameter &lt;code>codeLineNumbers&lt;/code> setting to &lt;code>true&lt;/code> or &lt;code>false&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="l">params]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nn">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="l">codeLineNumbers = true&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Shows line numbers for all code blocks globally.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nn">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="limit-code-block-height" class=link_owner>
+ Limit code block height
+ &lt;a href="#limit-code-block-height" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h4>
+&lt;p>You can globally control the number of lines which are displayed by default for your code blocks. Code which has the number of lines exceed this value will dynamically cause two code block expansion buttons to appear, allowing the user to expand to full length and contract. This is useful when sharing code or scripts with tens or hundreds of lines where you wish to control how many are displayed. Under params in &lt;code>config.toml&lt;/code> file, add a value as follows:&lt;/p></description></item><item><title>Theme Overrides</title><link>https://docomola.github.io/myblog/docs/clarity/theme-overrides/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docomola.github.io/myblog/docs/clarity/theme-overrides/</guid><description>&lt;h3 id="custom-css-and-js" class=link_owner>
+ Custom CSS and JS
+ &lt;a href="#custom-css-and-js" class="link icon">
+ &lt;svg>
+ &lt;use xlink:href="#anchor-link">&lt;/use>
+ &lt;/svg>
+ &lt;/a>
+&lt;/h3>
+&lt;p>To minimize HTTP requests per page, we would recommend loading CSS styles and JavaScript helpers in single bundles. That is to say, one CSS file and one JavaScript file. Using Hugo minify functions, these files will be minified to optimize the size.&lt;/p>
+&lt;p>Going by the above 👆🏻 reason, we recommend adding custom CSS and JS via the custom SASS file (&lt;a href="https://github.com/onweru/compose/blob/master/assets/sass/_custom.sass">Compose&lt;/a>, &lt;a href="https://github.com/chipzoller/hugo-clarity/blob/master/assets/sass/_custom.sass">Clarity&lt;/a>) and the custom JS file (&lt;a href="https://github.com/onweru/compose/hugo-compose/blob/master/assets/js/custom.js">Compose&lt;/a>, &lt;a href="https://github.com/chipzoller/hugo-clarity/blob/master/assets/js/custom.js">Clarity&lt;/a>).&lt;/p></description></item></channel></rss>
