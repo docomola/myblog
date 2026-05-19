@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on docomola 的博客</title><link>https://docomola.github.io/myblog/categories/</link><description>Recent content in Categories on docomola 的博客</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>技术</title><link>https://docomola.github.io/myblog/categories/%E6%8A%80%E6%9C%AF/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/categories/%E6%8A%80%E6%9C%AF/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on docomola 的博客</title>
+    <link>http://localhost:1313/myblog/categories/</link>
+    <description>Recent content in Categories on docomola 的博客</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/myblog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术</title>
+      <link>http://localhost:1313/myblog/categories/%E6%8A%80%E6%9C%AF/</link>
+      <pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/categories/%E6%8A%80%E6%9C%AF/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>生活</title>
+      <link>http://localhost:1313/myblog/categories/%E7%94%9F%E6%B4%BB/</link>
+      <pubDate>Fri, 15 May 2026 14:30:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/categories/%E7%94%9F%E6%B4%BB/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

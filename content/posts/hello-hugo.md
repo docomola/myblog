@@ -5,6 +5,7 @@ title = 'Hello Hugo'
 description = '我的第一篇 Hugo 博客文章'
 tags = ["Hugo", "博客", "教程"]
 categories = ["技术"]
+image = "images/boy.jpg"
 +++
 
 # 欢迎来到我的 Hugo 博客！

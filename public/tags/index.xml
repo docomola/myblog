@@ -1,1 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on docomola 的博客</title><link>https://docomola.github.io/myblog/tags/</link><description>Recent content in Tags on docomola 的博客</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate><atom:link href="https://docomola.github.io/myblog/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo</title><link>https://docomola.github.io/myblog/tags/hugo/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/tags/hugo/</guid><description/></item><item><title>博客</title><link>https://docomola.github.io/myblog/tags/%E5%8D%9A%E5%AE%A2/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/tags/%E5%8D%9A%E5%AE%A2/</guid><description/></item><item><title>教程</title><link>https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/</link><pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate><guid>https://docomola.github.io/myblog/tags/%E6%95%99%E7%A8%8B/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on docomola 的博客</title>
+    <link>http://localhost:1313/myblog/tags/</link>
+    <description>Recent content in Tags on docomola 的博客</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 19 May 2026 21:51:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/myblog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo</title>
+      <link>http://localhost:1313/myblog/tags/hugo/</link>
+      <pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/hugo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>博客</title>
+      <link>http://localhost:1313/myblog/tags/%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>教程</title>
+      <link>http://localhost:1313/myblog/tags/%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Tue, 19 May 2026 21:51:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/%E6%95%99%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ETF</title>
+      <link>http://localhost:1313/myblog/tags/etf/</link>
+      <pubDate>Mon, 18 May 2026 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/etf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>工具</title>
+      <link>http://localhost:1313/myblog/tags/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 18 May 2026 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>投资</title>
+      <link>http://localhost:1313/myblog/tags/%E6%8A%95%E8%B5%84/</link>
+      <pubDate>Mon, 18 May 2026 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/%E6%8A%95%E8%B5%84/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>思考</title>
+      <link>http://localhost:1313/myblog/tags/%E6%80%9D%E8%80%83/</link>
+      <pubDate>Fri, 15 May 2026 14:30:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/%E6%80%9D%E8%80%83/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Obsidian</title>
+      <link>http://localhost:1313/myblog/tags/obsidian/</link>
+      <pubDate>Sun, 10 May 2026 09:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/obsidian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>第二大脑</title>
+      <link>http://localhost:1313/myblog/tags/%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</link>
+      <pubDate>Sun, 10 May 2026 09:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>自动化</title>
+      <link>http://localhost:1313/myblog/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/</link>
+      <pubDate>Sun, 10 May 2026 09:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/myblog/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

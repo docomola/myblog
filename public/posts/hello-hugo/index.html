@@ -1,57 +1,781 @@
-<!doctype html><html lang=zh class=h-full><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=utf-8><meta name=language content="zh"><meta name=theme-color content="#BD5FFF"><script>(function(){const e=localStorage.getItem("theme"),t=window.matchMedia("(prefers-color-scheme: light)").matches,n=e||(t?"light":"dark");document.documentElement.setAttribute("data-theme",n)})(),function(){var e=sessionStorage.getItem("mana_pt");e&&(document.documentElement.setAttribute("data-page-enter",e),sessionStorage.removeItem("mana_pt"))}(),window.MANA_SEARCH_INDEX_URL="/myblog/index.json",window.MANA_LANG_PREFIXES=["zh"]</script><title>Hello Hugo | docomola 的博客</title><meta name=description content="
+<!doctype html>
+<html lang="zh" class="h-full">
+  <head><script src="/myblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=myblog/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="zh">
+<meta name="theme-color" content="#BD5FFF">
+<script>
+  
+  (function () {
+    const storedTheme = localStorage.getItem("theme");
+    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const theme = storedTheme || (systemPrefersLight ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+  
+  (function(){var t=sessionStorage.getItem('mana_pt');if(t){document.documentElement.setAttribute('data-page-enter',t);sessionStorage.removeItem('mana_pt');}})();
+  
+  window.MANA_SEARCH_INDEX_URL = '\/myblog\/index.json';
+  
+  window.MANA_LANG_PREFIXES = ['zh'];
+</script>
+<title>Hello Hugo | docomola 的博客</title>
+<meta
+  name="description"
+  content="
     我的第一篇 Hugo 博客文章
   
-  "><meta name=keywords content="Hugo,博客,教程"><meta name=author content="docomola"><link rel=canonical href=https://docomola.github.io/myblog/posts/hello-hugo/><link rel=alternate hreflang=zh href=https://docomola.github.io/myblog/posts/hello-hugo/><link rel=alternate hreflang=x-default href=https://docomola.github.io/myblog/posts/hello-hugo/><meta name=robots content="index, follow"><meta property="og:type" content="article"><meta property="og:locale" content="zh"><meta property="og:title" content="Hello Hugo | docomola 的博客"><meta property="og:description" content="我的第一篇 Hugo 博客文章"><meta property="og:url" content="https://docomola.github.io/myblog/posts/hello-hugo/"><meta property="og:site_name" content="docomola 的博客"><meta property="article:published_time" content="2026-05-19T21:51:00+08:00"><meta property="article:modified_time" content="2026-05-19T21:51:00+08:00"><meta property="article:section" content="Hugo"><meta property="article:tag" content="Hugo"><meta property="article:tag" content="博客"><meta property="article:tag" content="教程"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Hello Hugo | docomola 的博客"><meta name=twitter:description content="我的第一篇 Hugo 博客文章"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","email":"133315191+tearjoker@users.noreply.github.com","name":"docomola","sameAs":["https://github.com/docomola"]},"dateModified":"2026-05-19T21:51:00+08:00","datePublished":"2026-05-19T21:51:00+08:00","description":"我的第一篇 Hugo 博客文章","headline":"Hello Hugo","inLanguage":"zh","keywords":["Hugo","博客","教程"],"mainEntityOfPage":{"@id":"https://docomola.github.io/myblog/posts/hello-hugo/","@type":"WebPage"},"publisher":{"@type":"Organization","name":"docomola 的博客","url":"https://docomola.github.io/myblog/"},"timeRequired":"PT1M","url":"https://docomola.github.io/myblog/posts/hello-hugo/","wordCount":53}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://docomola.github.io/myblog/","name":"Home","position":1},{"@type":"ListItem","item":"https://docomola.github.io/myblog/posts/","name":"Posts","position":2},{"@type":"ListItem","item":"https://docomola.github.io/myblog/posts/hello-hugo/","name":"Hello Hugo","position":3}]}</script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel=stylesheet media=print onload='this.media="all"'><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel=stylesheet></noscript><link rel=stylesheet href=/myblog/css/theme.min.8072bb5d762c2b5f525748fdbcc951c0546e2e712e06c598f5e8ee6364a69869.css><link rel=stylesheet href=/myblog/css/syntax-dark.min.b01037e5609e6260b74d6fcdd6d5131e8dcbc4d46d6ef4bfbe5a60bdfc1a9f30.css id=syntax-dark-theme class=syntax-theme><link rel=stylesheet href=/myblog/css/syntax-light.min.9602bc2fcef52b4c62e05eae14b48ba428e114f116e993e504d83ed5a3aeda98.css id=syntax-light-theme class=syntax-theme disabled><script>(function(){const n=localStorage.getItem("theme"),s=window.matchMedia("(prefers-color-scheme: light)").matches,o=n||(s?"light":"dark"),e=document.getElementById("syntax-dark-theme"),t=document.getElementById("syntax-light-theme");o==="light"?(e&&(e.disabled=!0),t&&(t.disabled=!1)):(e&&(e.disabled=!1),t&&(t.disabled=!0));const i=new MutationObserver(()=>{const n=document.documentElement.getAttribute("data-theme");n==="light"?(e&&(e.disabled=!0),t&&(t.disabled=!1)):(e&&(e.disabled=!1),t&&(t.disabled=!0))});i.observe(document.documentElement,{attributes:!0,attributeFilter:["data-theme"]})})()</script><link rel=stylesheet href=/myblog/css/bundle.min.463d82356b0723459e361a32dca0edbf0205e6099d6e39b8ffe0eaf76d99841b.css><link rel=icon type=image/x-icon href=/favicon.ico><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png href=/favicon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=192x192 href=/android-chrome-192x192.png><link rel=icon type=image/png sizes=512x512 href=/android-chrome-512x512.png><link rel=manifest href=/site.webmanifest></head><body class="flex flex-col min-h-screen"><a href=#main-content class=skip-to-main aria-label></a><header class=sticky-header><div class=header-container><nav class=header-nav role=navigation aria-label="Main navigation"><div class=header-content><div class=header-logo><a href=/ class=logo-link aria-label="Home - docomola 的博客">docomola 的博客</a></div><button id=mobile-menu-toggle class=mobile-menu-toggle aria-label aria-expanded=false type=button>
-<span class=hamburger-icon><span class=hamburger-line></span>
-<span class=hamburger-line></span>
-<span class=hamburger-line></span></span></button><div class=header-menu><ul class=menu-list><li class=menu-item><a href=/myblog/ class=menu-link>首页</a></li><li class=menu-item><a href=/myblog/posts/ class=menu-link>文章</a></li><li class=menu-item><a href=/myblog/tags/ class=menu-link>标签</a></li><li class=menu-item><a href=/myblog/about/ class=menu-link>关于</a></li></ul><button id=search-toggle class=search-toggle aria-label type=button>
-<svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5A7 7 0 113 10a7 7 0 0114 0z"/></svg>
+  ">
+
+
+  <meta name="keywords" content="Hugo, 博客, 教程">
+
+
+
+  <meta name="author" content="docomola">
+
+
+
+<link rel="canonical" href="http://localhost:1313/myblog/posts/hello-hugo/">
+
+
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/myblog/posts/hello-hugo/"><link rel="alternate" hreflang="x-default" href="http://localhost:1313/myblog/posts/hello-hugo/">
+
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh">
+<meta property="og:title" content="Hello Hugo | docomola 的博客">
+<meta property="og:description" content="我的第一篇 Hugo 博客文章">
+<meta property="og:url" content="http://localhost:1313/myblog/posts/hello-hugo/">
+<meta property="og:site_name" content="docomola 的博客"><meta property="og:image" content="http://localhost:1313/myblog/images/boy.jpg">
+  <meta property="og:image:alt" content="Hello Hugo | docomola 的博客">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630"><meta property="article:published_time" content="2026-05-19T21:51:00&#43;08:00">
+  <meta
+    property="article:modified_time"
+    content="2026-05-19T21:51:00&#43;08:00"><meta property="article:section" content="Hugo"><meta property="article:tag" content="Hugo"><meta property="article:tag" content="博客"><meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hello Hugo | docomola 的博客">
+<meta name="twitter:description" content="我的第一篇 Hugo 博客文章"><meta name="twitter:image" content="http://localhost:1313/myblog/images/boy.jpg">
+  <meta name="twitter:image:alt" content="Hello Hugo | docomola 的博客">
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+  
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","email":"133315191+tearjoker@users.noreply.github.com","name":"docomola","sameAs":["https://github.com/docomola"]},"dateModified":"2026-05-19T21:51:00+08:00","datePublished":"2026-05-19T21:51:00+08:00","description":"我的第一篇 Hugo 博客文章","headline":"Hello Hugo","image":"http://localhost:1313/myblog/images/boy.jpg","inLanguage":"zh","keywords":["Hugo","博客","教程"],"mainEntityOfPage":{"@id":"http://localhost:1313/myblog/posts/hello-hugo/","@type":"WebPage"},"publisher":{"@type":"Organization","name":"docomola 的博客","url":"http://localhost:1313/myblog/"},"timeRequired":"PT1M","url":"http://localhost:1313/myblog/posts/hello-hugo/","wordCount":53}</script>
+
+
+
+  
+  
+  
+    
+  
+  
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"http://localhost:1313/myblog/","name":"Home","position":1},{"@type":"ListItem","item":"http://localhost:1313/myblog/posts/","name":"Posts","position":2},{"@type":"ListItem","item":"http://localhost:1313/myblog/posts/hello-hugo/","name":"Hello Hugo","position":3}]}</script>
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+  media="print"
+  onload="this.media='all'">
+<noscript>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</noscript>
+
+<link rel="stylesheet" href="/myblog/css/theme.min.8072bb5d762c2b5f525748fdbcc951c0546e2e712e06c598f5e8ee6364a69869.css">
+
+
+  <link
+    rel="stylesheet"
+    href="/myblog/css/syntax-dark.min.b01037e5609e6260b74d6fcdd6d5131e8dcbc4d46d6ef4bfbe5a60bdfc1a9f30.css"
+    id="syntax-dark-theme"
+    class="syntax-theme">
+  <link
+    rel="stylesheet"
+    href="/myblog/css/syntax-light.min.9602bc2fcef52b4c62e05eae14b48ba428e114f116e993e504d83ed5a3aeda98.css"
+    id="syntax-light-theme"
+    class="syntax-theme"
+    disabled><script>
+  
+  (function () {
+    const storedTheme = localStorage.getItem("theme");
+    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const theme = storedTheme || (systemPrefersLight ? "light" : "dark");
+
+    const syntaxDark = document.getElementById("syntax-dark-theme");
+    const syntaxLight = document.getElementById("syntax-light-theme");
+
+    if (theme === "light") {
+      if (syntaxDark) syntaxDark.disabled = true;
+      if (syntaxLight) syntaxLight.disabled = false;
+    } else {
+      if (syntaxDark) syntaxDark.disabled = false;
+      if (syntaxLight) syntaxLight.disabled = true;
+    }
+
+    
+    const observer = new MutationObserver(() => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      if (currentTheme === "light") {
+        if (syntaxDark) syntaxDark.disabled = true;
+        if (syntaxLight) syntaxLight.disabled = false;
+      } else {
+        if (syntaxDark) syntaxDark.disabled = false;
+        if (syntaxLight) syntaxLight.disabled = true;
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  })();
+</script>
+
+
+
+
+<link rel="stylesheet" href="/myblog/css/bundle.min.463d82356b0723459e361a32dca0edbf0205e6099d6e39b8ffe0eaf76d99841b.css">
+
+
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
+
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+<link rel="manifest" href="/site.webmanifest">
+
+
+
+
+  
+
+
+
+
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <a href="#main-content" class="skip-to-main" aria-label=""
+      ></a
+    >
+    <header class="sticky-header">
+      <div class="header-container">
+        <nav class="header-nav" role="navigation" aria-label="Main navigation">
+  <div class="header-content">
+    <div class="header-logo">
+      <a href="/" class="logo-link" aria-label="Home - docomola 的博客">
+        docomola 的博客
+      </a>
+    </div>
+
+    
+    <button 
+      id="mobile-menu-toggle" 
+      class="mobile-menu-toggle" 
+      aria-label="" 
+      aria-expanded="false"
+      type="button">
+      <span class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </span>
+    </button>
+
+    <div class="header-menu">
+      <ul class="menu-list">
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/"
+        class="menu-link ">
+        首页
+      </a>
+    </li>
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/posts/"
+        class="menu-link ">
+        文章
+      </a>
+    </li>
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/tags/"
+        class="menu-link ">
+        标签
+      </a>
+    </li>
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/about/"
+        class="menu-link ">
+        关于
+      </a>
+    </li>
+  
+</ul>
+
+
+      <button id="search-toggle" class="search-toggle" aria-label="" type="button">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </button>
+
+      
+
+
+      <button id="theme-toggle" class="theme-toggle" aria-label="" type="button">
+  <svg class="icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+  </svg>
+  <svg class="icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+  </svg>
 </button>
-<button id=theme-toggle class=theme-toggle aria-label type=button>
-<svg class="icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364-.707-.707M6.343 6.343l-.707-.707m12.728.0-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-<svg class="icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003.0 0012 21a9.003 9.003.0 008.354-5.646z"/></svg></button></div></div></nav></div><div class=reading-progress-bar aria-hidden=true></div></header><main id=main-content class=flex-1 role=main><div class=single-post-wrapper><article class=single-post><header class=post-header><nav aria-label=breadcrumb class=breadcrumb-nav><ol class=breadcrumb-list itemscope itemtype=https://schema.org/BreadcrumbList><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a href=/ itemprop=item><span itemprop=name>Home</span></a>
-<meta itemprop=position content="1"><span aria-hidden=true class=breadcrumb-sep>›</span></li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a href=/myblog/posts/ itemprop=item><span itemprop=name>Posts</span></a>
-<meta itemprop=position content="2"><span aria-hidden=true class=breadcrumb-sep>›</span></li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><span itemprop=name class=breadcrumb-current>Hello Hugo</span>
-<meta itemprop=position content="3"></li></ol></nav><h1 class=post-title-main>Hello Hugo</h1><p class=post-description-main>我的第一篇 Hugo 博客文章</p><div class=post-meta><div class=post-meta-info><time datetime=2026-05-19T21:51:00+08:00 class=post-date><svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
-2026年5月19日
-</time><span class=meta-separator>•</span>
-<span class=post-word-count><svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-53
-</span><span class=meta-separator>•</span>
-<span class=post-reading-time><svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3A9 9 0 113 12a9 9 0 0118 0z"/></svg>
-1</span></div><div class=post-tags><a href=/tags/hugo class=post-tag>Hugo</a>
-<a href=/tags/%E5%8D%9A%E5%AE%A2 class=post-tag>博客</a>
-<a href=/tags/%E6%95%99%E7%A8%8B class=post-tag>教程</a></div></div></header><div class=post-content-main><h1 id=欢迎来到我的-hugo-博客>欢迎来到我的 Hugo 博客！</h1><p>这是使用 <strong>Hugo + Mana 主题</strong> 搭建的个人博客的第一篇文章。</p><h2 id=为什么选择-hugo>为什么选择 Hugo？</h2><p>Hugo 是一个非常快速的静态站点生成器，具有以下优点：</p><ul><li>⚡ <strong>极速构建</strong> — 数千篇文章也能在毫秒级完成构建</li><li>🛠️ <strong>无需依赖</strong> — 单个二进制文件，部署简单</li><li>📝 <strong>内容优先</strong> — 使用 Markdown 写作，专注内容创作</li><li>🌍 <strong>丰富的主题生态</strong> — 社区提供了大量免费主题</li></ul><h2 id=mana-主题特点>Mana 主题特点</h2><p>Mana 是一个简洁优雅的 Hugo 博客主题：</p><ol><li>响应式设计，移动端友好</li><li>支持深色模式</li><li>内置文章搜索功能</li><li>支持代码高亮（Catppuccin 主题）</li><li>简洁的卡片式文章列表</li></ol><h2 id=示例代码>示例代码</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>hello_hugo</span><span class=p>():</span>
-</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Hello, Hugo!&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;欢迎来到我的博客！&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>hello_hugo</span><span class=p>()</span>
-</span></span></code></pre></div><h2 id=接下来>接下来</h2><p>后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！</p><blockquote class=blockquote-regular><p>感谢阅读，如有问题欢迎留言讨论。</p></blockquote></div><footer class=post-footer><div class=post-tags-footer><span class=tags-label>:</span>
-<a href=/tags/hugo class=post-tag>Hugo</a>
-<a href=/tags/%E5%8D%9A%E5%AE%A2 class=post-tag>博客</a>
-<a href=/tags/%E6%95%99%E7%A8%8B class=post-tag>教程</a></div></footer><nav class=post-navigation aria-label="Post navigation"><a href=/myblog/posts/first-post/ class="nav-link nav-prev" aria-label="Previous post: First Post"><span class=nav-label></span>
-<span class=nav-title>First Post</span></a></nav></article><aside class=post-toc id=post-toc aria-label><button class=toc-toggle id=toc-toggle aria-expanded=true aria-controls=toc-content aria-label>
-<svg class="toc-burger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-<span class=toc-toggle-text></span>
-<svg class="toc-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class=toc-content id=toc-content><nav class=toc-nav aria-label><nav id=TableOfContents><ul><li><a href=#欢迎来到我的-hugo-博客>欢迎来到我的 Hugo 博客！</a><ul><li><a href=#为什么选择-hugo>为什么选择 Hugo？</a></li><li><a href=#mana-主题特点>Mana 主题特点</a></li><li><a href=#示例代码>示例代码</a></li><li><a href=#接下来>接下来</a></li></ul></li></ul></nav></nav></div></aside></div></main><footer><footer class=site-footer><div class=footer-content><p class=footer-text>&copy;
-2026-2026
-docomola.
-Built with Hugo and Mana theme</p><div class=footer-social><div class=social-links><a href=https://github.com/docomola target=_blank rel="noopener noreferrer" class=social-link aria-label=GitHub><svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483.0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951.0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65.0.0.84-.27 2.75 1.026A9.564 9.564.0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688.0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855.0 1.338-.012 2.419-.012 2.747.0.268.18.58.688.482A10.019 10.019.0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
-</a><a href=mailto:133315191+tearjoker@users.noreply.github.com class=social-link aria-label=Email><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22.0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v10a2 2 0 002 2z"/></svg></a></div></div></div></footer></footer><div id=search-modal class=search-modal aria-hidden=true role=dialog aria-label data-no-results><div class=search-modal-backdrop id=search-modal-backdrop></div><div class=search-modal-container><div class=search-input-wrapper><svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5A7 7 0 113 10a7 7 0 0114 0z"/></svg>
-<input type=search id=search-input class=search-input placeholder autocomplete=off aria-label>
-<button class=search-input-clear id=search-input-clear aria-label>
-<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4A1 1 0 009 4v3M4 7h16"/></svg>
+
+    </div>
+  </div>
+</nav>
+
+      </div>
+      <div class="reading-progress-bar" aria-hidden="true"></div>
+    </header>
+
+    <main id="main-content" class="flex-1" role="main">
+      
+  <div class="single-post-wrapper">
+    <article class="single-post">
+      
+
+
+
+
+  <div class="post-image-single">
+    <img
+      src="/myblog/images/boy.jpg"
+      alt="
+        我的第一篇 Hugo 博客文章
+      "
+      loading="eager"
+      width="1200"
+      height="630">
+  </div>
+
+
+
+
+      <header class="post-header">
+        
+
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+      <meta itemprop="position" content="1" />
+      <span aria-hidden="true" class="breadcrumb-sep">›</span>
+    </li>
+    
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/myblog/posts/" itemprop="item"><span itemprop="name">Posts</span></a>
+      <meta itemprop="position" content="2" />
+      <span aria-hidden="true" class="breadcrumb-sep">›</span>
+    </li>
+    
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name" class="breadcrumb-current">Hello Hugo</span>
+      <meta itemprop="position" content="3" />
+    </li>
+  </ol>
+</nav>
+
+
+        <h1 class="post-title-main">Hello Hugo</h1>
+
+        
+          <p class="post-description-main">我的第一篇 Hugo 博客文章</p>
+        
+
+        <div class="post-meta">
+  <div class="post-meta-info">
+    <time datetime="2026-05-19T21:51:00&#43;08:00" class="post-date">
+      <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+      </svg>
+      2026年5月19日
+    </time>
+
+    <span class="meta-separator">•</span>
+
+    
+      <span class="post-word-count">
+        <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        53 
+      </span>
+    
+
+    
+      <span class="meta-separator">•</span>
+      <span class="post-reading-time">
+        <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        1 
+      </span>
+    
+  </div>
+
+  
+    <div class="post-tags">
+      
+        <a href="/tags/hugo" class="post-tag">Hugo</a>
+      
+        <a href="/tags/%E5%8D%9A%E5%AE%A2" class="post-tag">博客</a>
+      
+        <a href="/tags/%E6%95%99%E7%A8%8B" class="post-tag">教程</a>
+      
+    </div>
+  
+</div>
+
+      </header>
+
+      <div class="post-content-main">
+        <h1 id="欢迎来到我的-hugo-博客">欢迎来到我的 Hugo 博客！</h1>
+<p>这是使用 <strong>Hugo + Mana 主题</strong> 搭建的个人博客的第一篇文章。</p>
+<h2 id="为什么选择-hugo">为什么选择 Hugo？</h2>
+<p>Hugo 是一个非常快速的静态站点生成器，具有以下优点：</p>
+<ul>
+<li>⚡ <strong>极速构建</strong> — 数千篇文章也能在毫秒级完成构建</li>
+<li>🛠️ <strong>无需依赖</strong> — 单个二进制文件，部署简单</li>
+<li>📝 <strong>内容优先</strong> — 使用 Markdown 写作，专注内容创作</li>
+<li>🌍 <strong>丰富的主题生态</strong> — 社区提供了大量免费主题</li>
+</ul>
+<h2 id="mana-主题特点">Mana 主题特点</h2>
+<p>Mana 是一个简洁优雅的 Hugo 博客主题：</p>
+<ol>
+<li>响应式设计，移动端友好</li>
+<li>支持深色模式</li>
+<li>内置文章搜索功能</li>
+<li>支持代码高亮（Catppuccin 主题）</li>
+<li>简洁的卡片式文章列表</li>
+</ol>
+<h2 id="示例代码">示例代码</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello_hugo</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, Hugo!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;欢迎来到我的博客！&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hello_hugo</span><span class="p">()</span>
+</span></span></code></pre></div><h2 id="接下来">接下来</h2>
+<p>后面我会陆续分享技术笔记、学习心得和生活记录。欢迎常来！</p>
+
+
+
+
+
+
+
+
+<blockquote class="blockquote-regular">
+  <p>感谢阅读，如有问题欢迎留言讨论。</p>
+</blockquote>
+
+      </div>
+
+      
+        <footer class="post-footer">
+          <div class="post-tags-footer">
+            <span class="tags-label">:</span>
+            
+              <a href="/tags/hugo" class="post-tag">Hugo</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2" class="post-tag">博客</a>
+            
+              <a href="/tags/%E6%95%99%E7%A8%8B" class="post-tag">教程</a>
+            
+          </div>
+        </footer>
+      
+
+      
+
+
+<section class="related-posts" aria-label="Related Posts">
+  <h2 class="related-posts-title">Related Posts</h2>
+  <ul class="related-posts-list">
+    
+    <li class="related-post-item">
+      <a href="/myblog/posts/no-comments/" class="related-post-link">
+        <strong>为什么我的博客不需要评论区</strong>
+        <span>聊聊个人博客去掉评论功能的理由，专注内容创作本身</span>
+      </a>
+    </li>
+    
+  </ul>
+</section>
+
+
+
+      <nav class="post-navigation" aria-label="Post navigation">
+        
+          <a
+            href="/myblog/posts/first-post/"
+            class="nav-link nav-prev"
+            aria-label="Previous post: First Post">
+            <span class="nav-label"></span>
+            <span class="nav-title">First Post</span>
+          </a>
+        
+
+        
+      </nav>
+    </article>
+
+    
+  <aside class="post-toc" id="post-toc" aria-label="">
+    <button
+      class="toc-toggle"
+      id="toc-toggle"
+      aria-expanded="true"
+      aria-controls="toc-content"
+      aria-label="">
+      <svg
+        class="toc-burger-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <span class="toc-toggle-text"></span>
+      <svg
+        class="toc-chevron-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    <div class="toc-content" id="toc-content">
+      <nav class="toc-nav" aria-label="">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#欢迎来到我的-hugo-博客">欢迎来到我的 Hugo 博客！</a>
+      <ul>
+        <li><a href="#为什么选择-hugo">为什么选择 Hugo？</a></li>
+        <li><a href="#mana-主题特点">Mana 主题特点</a></li>
+        <li><a href="#示例代码">示例代码</a></li>
+        <li><a href="#接下来">接下来</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </nav>
+    </div>
+  </aside>
+
+
+  </div>
+
+    </main>
+
+    <footer>
+      <footer class="site-footer">
+  <div class="footer-content">
+    <p class="footer-text">
+      &copy;
+      
+      2026-2026
+      
+      docomola.
+      
+        Built with Hugo and Mana theme
+      
+    </p>
+    
+      <div class="footer-social">
+        <div class="social-links">
+  
+    <a
+      href="https://github.com/docomola"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-link"
+      aria-label="GitHub">
+      <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill-rule="evenodd"
+          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </a>
+  
+
+  
+
+  
+
+  
+
+  
+    <a href="mailto:133315191&#43;tearjoker@users.noreply.github.com" class="social-link" aria-label="Email">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+      </svg>
+    </a>
+  
+  
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+
+    </footer>
+
+    <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-label="" data-no-results="">
+  <div class="search-modal-backdrop" id="search-modal-backdrop"></div>
+  <div class="search-modal-container">
+    <div class="search-input-wrapper">
+      <svg class="search-input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <input
+        type="search"
+        id="search-input"
+        class="search-input"
+        placeholder=""
+        autocomplete="off"
+        aria-label="">
+      <button class="search-input-clear" id="search-input-clear" aria-label="">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+        </svg>
+      </button>
+      <button class="search-modal-close" id="search-modal-close" aria-label="">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+</div>
+
+    
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-overlay"></div>
+  <div class="mobile-menu-content">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-title"></span>
+      <button
+        id="mobile-menu-close"
+        class="mobile-menu-close"
+        aria-label=""
+        type="button">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-menu-nav" role="navigation" aria-label="Mobile navigation">
+      <ul class="menu-list">
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/"
+        class="menu-link ">
+        首页
+      </a>
+    </li>
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/posts/"
+        class="menu-link ">
+        文章
+      </a>
+    </li>
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/tags/"
+        class="menu-link ">
+        标签
+      </a>
+    </li>
+  
+    <li class="menu-item">
+      <a
+        href="/myblog/about/"
+        class="menu-link ">
+        关于
+      </a>
+    </li>
+  
+</ul>
+
+    </nav>
+    <div class="mobile-menu-footer">
+      <button id="mobile-search-toggle" class="mobile-search-toggle" aria-label="" type="button">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <span></span>
+      </button>
+      
+
+      <button class="theme-toggle" aria-label="" type="button">
+        <svg class="icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <svg class="icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+    
+
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="" type="button">
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
 </button>
-<button class=search-modal-close id=search-modal-close aria-label>
-<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/></svg></button></div><div id=search-results class=search-results></div></div></div><div id=mobile-menu class=mobile-menu aria-hidden=true><div class=mobile-menu-overlay></div><div class=mobile-menu-content><div class=mobile-menu-header><span class=mobile-menu-title></span>
-<button id=mobile-menu-close class=mobile-menu-close aria-label type=button>
-<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/></svg></button></div><nav class=mobile-menu-nav role=navigation aria-label="Mobile navigation"><ul class=menu-list><li class=menu-item><a href=/myblog/ class=menu-link>首页</a></li><li class=menu-item><a href=/myblog/posts/ class=menu-link>文章</a></li><li class=menu-item><a href=/myblog/tags/ class=menu-link>标签</a></li><li class=menu-item><a href=/myblog/about/ class=menu-link>关于</a></li></ul></nav><div class=mobile-menu-footer><button id=mobile-search-toggle class=mobile-search-toggle aria-label type=button>
-<svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5A7 7 0 113 10a7 7 0 0114 0z"/></svg>
-<span></span>
-</button>
-<button class=theme-toggle aria-label type=button>
-<svg class="icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364-.707-.707M6.343 6.343l-.707-.707m12.728.0-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-<svg class="icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003.0 0012 21a9.003 9.003.0 008.354-5.646z"/></svg></button></div></div></div><button id=scroll-to-top class=scroll-to-top aria-label type=button>
-<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0 7 7m-7-7v18"/></svg>
-</button>
-<script src=/myblog/js/main.min.8cc4b96ac7af9517fd6ad80eeddd46ac956bb6c47f4c0481138642a15b70782f.js defer></script></body></html>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/myblog/js/main.min.8cc4b96ac7af9517fd6ad80eeddd46ac956bb6c47f4c0481138642a15b70782f.js" defer></script>
+
+  </body>
+</html>
