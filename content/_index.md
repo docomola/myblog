@@ -30,6 +30,6 @@ Or, [generate graphs, charts](docs/compose/graphs-charts-tables/#show-a-pie-doug
 {{< /column >}}
 
 {{< column >}}
-![diy](/images/scribble.jpg)
+![diy](images/scribble.jpg)
 {{< /column >}}
 {{< /block >}}
