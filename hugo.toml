@@ -40,6 +40,12 @@ defaultContentLanguage = "zh"
   heroTitleLine2 = "个人技术博客"
   footerText = "Built with Hugo and Mana theme"
 
+  [params.avatar]
+    [params.avatar.home]
+      url = "images/artist.jpg"
+    [params.avatar.about]
+      url = "images/artist.jpg"
+
   [params.social]
     github = "https://github.com/docomola"
     email = "133315191+tearjoker@users.noreply.github.com"
