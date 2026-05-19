@@ -34,10 +34,10 @@ defaultContentLanguage = "zh"
 [params]
   enableIntegrity = false
   relatedPostsCount = 3
-  description = 'docomola 的个人技术博客'
+  description = 'docomola personal tech blog'
   author = "docomola"
   heroTitleLine1 = "DOCOMOLA"
-  heroTitleLine2 = "个人技术博客"
+  heroTitleLine2 = "Personal Tech Blog"
   footerText = "Built with Hugo and Mana theme"
 
   [params.avatar]
