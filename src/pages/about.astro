@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import { siteConfig } from '../config';
+import SocialIcons from '../components/SocialIcons.astro';
+import { getCollection } from 'astro:content';
+
+const blogPosts = await getCollection('writing', ({ data }) => !data.draft);
+const projects = await getCollection('projects');
+const gallery = await getCollection('gallery', ({ data }) => !data.draft);
+const docs = await getCollection('docs');
+
+const stats = [
+  { label: 'Articles', value: blogPosts.length, href: '/blog' },
+  { label: 'Projects', value: projects.length, href: '/projects' },
+  { label: 'Gallery', value: gallery.length, href: '/gallery' },
+  { label: 'Docs', value: docs.length, href: '/docs' },
+];
+---
+
+<BaseLayout>
+  <SEO
+    slot="head"
+    title="关于"
+    description="了解更多关于我和这个博客的信息。"
+    type="website"
+  />
+
+  <div class="about-page">
+    <!-- Hero Header -->
+    <header class="about-hero">
+      <div class="about-hero-top">
+        <span class="about-hero-label">Profile</span>
+        <span class="about-hero-status">
+          <span class="status-dot"></span>
+          Available for work
+        </span>
+      </div>
+      <h1 class="about-hero-title">About.</h1>
+      <p class="about-hero-subtitle">{siteConfig.author.name} · {siteConfig.author.title}</p>
+    </header>
+
+    <div class="about-body">
+      <!-- Left: Info -->
+      <div class="about-info">
+        <section class="about-section">
+          <h2 class="section-label">Bio</h2>
+          <p class="about-bio">{siteConfig.author.bio}</p>
+        </section>
+
+        {siteConfig.author.location && (
+          <section class="about-section">
+            <h2 class="section-label">Location</h2>
+            <p class="about-detail">{siteConfig.author.location}</p>
+          </section>
+        )}
+
+        <section class="about-section">
+          <h2 class="section-label">Contact</h2>
+          <a href={`mailto:${siteConfig.author.email}`} class="about-email">{siteConfig.author.email}</a>
+        </section>
+
+        <section class="about-section">
+          <h2 class="section-label">Social</h2>
+          <SocialIcons />
+        </section>
+      </div>
+
+      <!-- Right: Stats -->
+      <aside class="about-stats">
+        <h2 class="section-label">Stats</h2>
+        <div class="stats-grid">
+          {stats.map(({ label, value, href }) => (
+            <a href={href} class="stat-card">
+              <span class="stat-value">{value}</span>
+              <span class="stat-label">{label}</span>
+            </a>
+          ))}
+        </div>
+
+        <h2 class="section-label" style="margin-top: 2rem;">Navigate</h2>
+        <nav class="about-nav">
+          {siteConfig.nav.map(({ label, href }) => (
+            <a href={href} class="about-nav-link">
+              <span>{label}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          ))}
+        </nav>
+      </aside>
+    </div>
+  </div>
+
+  <style>
+    .about-page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 3rem 6rem 10rem;
+    }
+
+    /* Hero */
+    .about-hero {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .about-hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .about-hero-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+    }
+    .about-hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      display: inline-block;
+    }
+    .about-hero-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+    .about-hero-subtitle {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      font-weight: 400;
+    }
+
+    /* Body: two columns */
+    .about-body {
+      display: flex;
+      gap: 4rem;
+    }
+
+    /* Left info */
+    .about-info {
+      flex: 1;
+      min-width: 0;
+      max-width: 640px;
+    }
+    .about-section {
+      margin-bottom: 2rem;
+    }
+    .section-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text);
+      margin-bottom: 0.75rem;
+    }
+    .about-bio {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+    }
+    .about-detail {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+    }
+    .about-email {
+      font-size: 0.9375rem;
+      color: #60a5fa;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .about-email:hover {
+      text-decoration: underline;
+    }
+
+    /* Right stats */
+    .about-stats {
+      width: 280px;
+      flex-shrink: 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      background: var(--color-bg-secondary);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .stat-card:hover {
+      border-color: var(--color-text-muted);
+      background: var(--color-bg-elevated, var(--color-bg-secondary));
+    }
+    .stat-value {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+    }
+
+    /* Navigation links */
+    .about-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .about-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      border-radius: 0.375rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .about-nav-link:hover {
+      background: var(--color-bg-secondary);
+      color: var(--color-text);
+    }
+    .about-nav-link svg {
+      color: var(--color-text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-body { flex-direction: column; gap: 2rem; }
+      .about-stats { width: 100%; }
+      .about-info { max-width: 100%; }
+    }
+    @media (max-width: 768px) {
+      .about-page { padding: 2rem 1rem 4rem; }
+      .about-hero-title { font-size: 2.5rem; }
+    }
+    @media (max-width: 480px) {
+      .about-hero-title { font-size: 2rem; }
+      .about-hero-top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</BaseLayout>

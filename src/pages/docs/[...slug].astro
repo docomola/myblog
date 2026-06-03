@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map(doc => ({
+    params: { slug: doc.id.replace(/\.md$/, '').replace(/\\/g, '/') },
+  }));
+}
+
+const { slug } = Astro.params;
+const docs = await getCollection('docs');
+const doc = docs.find(d => {
+  const docSlug = d.id.replace(/\.md$/, '').replace(/\\/g, '/');
+  return docSlug === slug;
+});
+
+if (!doc) {
+  return Astro.redirect('/docs');
+}
+
+const { Content } = await render(doc);
+
+// Auto-generate sidebar from folder structure
+const sections = new Map<string, { label: string; href: string }[]>();
+docs.forEach(d => {
+  const docSlug = d.id.replace(/\.md$/, '').replace(/\\/g, '/');
+  const parts = docSlug.split('/');
+  if (parts.length >= 2) {
+    const folder = parts[0]; // first folder = category
+    const label = d.data.title;
+    if (!sections.has(folder)) sections.set(folder, []);
+    sections.get(folder)!.push({ label, href: '/docs/' + docSlug });
+  }
+});
+const sidebarSections = Array.from(sections.entries()).map(([folder, links]) => ({
+  folder,
+  links,
+}));
+
+// TOC from headings
+const body = doc.body || '';
+const headingMatches = body.matchAll(/^#{2,3}\s+(.+)$/gm);
+const toc = Array.from(headingMatches).map((m: RegExpMatchArray) => {
+  const text = m[1];
+  return { text, slug: text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\u4e00-\u9fa5-]/g, '') };
+});
+---
+
+<DocsLayout
+  title={doc.data.title}
+  sidebarSections={sidebarSections}
+  currentPath={'/docs/' + slug}
+  toc={toc}
+>
+  <Content />
+</DocsLayout>

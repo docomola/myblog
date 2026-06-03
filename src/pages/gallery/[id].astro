@@ -1,0 +1,256 @@
+---
+/**
+ * Gallery Detail Page - Album View
+ * 
+ * Renders a single album with full-width flat images from Markdown content.
+ * Images are written in the .mdx body as standard markdown:
+ *   ![caption](https://image-url.com/photo.jpg)
+ * 
+ * Route: /gallery/[id]  (id = filename without extension, e.g. "city-lights")
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SEO from '../../components/SEO.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const albums = await getCollection('gallery', ({ data }) => !data.draft);
+  return albums.map(album => ({
+    params: { id: album.id },
+    props: { album },
+  }));
+}
+
+const { album } = Astro.props;
+const { Content } = await render(album);
+
+// Build gradient style from index
+const idx = parseInt(album.data.order) || 1;
+const gradientAngle = 135 + idx * 40;
+const gradientHue1 = idx * 55 + 200;
+const gradientHue2 = idx * 55 + 280;
+---
+
+<BaseLayout>
+  <SEO
+    slot="head"
+    title={album.data.title + ' - 画廊'}
+    description={album.data.description}
+    type="website"
+  />
+
+  <div class="album-page">
+    <!-- Back Link -->
+    <a href="/gallery" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      返回画廊
+    </a>
+
+    <!-- Album Header Banner -->
+    <div class="album-header">
+      {album.data.cover ? (
+        <div class="album-header-bg" style={'background-image: url(' + album.data.cover + '); background-size: cover; background-position: center;'}>
+        </div>
+      ) : (
+        <div class="album-header-bg" style={'background: linear-gradient(' + gradientAngle + 'deg, hsl(' + gradientHue1 + ', 55%, 45%), hsl(' + gradientHue2 + ', 50%, 30%))'}>
+          <span class="album-header-letter">{album.data.letter}</span>
+        </div>
+      )}
+      <div class="album-header-overlay"></div>
+      <div class="album-header-content">
+        <div class="album-header-meta">
+          <span class="album-year">{album.data.year}</span>
+          <a href={'/gallery?category=' + album.data.category} class="album-category">{album.data.category}</a>
+        </div>
+        <h1 class="album-title">{album.data.title}</h1>
+        <p class="album-desc">{album.data.description}</p>
+      </div>
+    </div>
+
+    <!-- Full-width Flat Image Content (rendered from Markdown) -->
+    <div class="album-content">
+      <Content />
+    </div>
+  </div>
+
+  <style>
+    .album-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--color-text);
+    }
+
+    /* ============================================
+       ALBUM HEADER (hero banner)
+       ============================================ */
+    .album-header {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      aspect-ratio: 21 / 9;
+    }
+
+    .album-header-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .album-header-letter {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.1);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .album-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+      z-index: 1;
+    }
+
+    .album-header-content {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      max-width: 600px;
+    }
+
+    .album-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .album-year {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .album-category {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .album-category:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    .album-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .album-desc {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* ============================================
+       ALBUM CONTENT (full-width flat images)
+       ============================================ */
+    .album-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Each image from markdown renders as <p><img></p> */
+    .album-content :global(p) {
+      margin: 0;
+    }
+
+    .album-content :global(img) {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.75rem;
+      object-fit: cover;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 768px) {
+      .album-page {
+        padding: 1.5rem 1rem 4rem;
+      }
+
+      .album-header {
+        aspect-ratio: 16 / 9;
+      }
+
+      .album-header-letter {
+        font-size: 8rem;
+      }
+
+      .album-header-content {
+        padding: 1.5rem;
+      }
+
+      .album-title {
+        font-size: 1.75rem;
+      }
+
+      .album-content :global(img) {
+        border-radius: 0.5rem;
+      }
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,264 @@
+---
+/**
+ * Navigation Component
+ * 
+ * Main site navigation with responsive behavior and theme toggle. Features centered
+ * navigation on desktop and horizontal scrolling on mobile. The theme toggle is fixed
+ * at the right edge with a gradient fade effect.
+ * 
+ * Navigation items are configured in src/config.ts and automatically include a "Home"
+ * link at the beginning. Active page highlighting is handled both server-side and
+ * client-side for View Transitions support.
+ * 
+ * @component
+ * 
+ * @example
+ * ```astro
+ * <Navigation />
+ * ```
+ */
+import { siteConfig } from '../config';
+import ThemeToggle from './ThemeToggle.astro';
+
+const currentPath = Astro.url.pathname;
+
+/**
+ * Navigation items with Home prepended
+ * 
+ * Combines a hardcoded Home link with navigation items from site config
+ * to ensure Home is always first in the navigation.
+ */
+const navItems = [
+  { label: '主页', href: '/' },
+  ...siteConfig.nav,
+];
+
+/**
+ * Determines if a navigation item should be marked as active
+ * 
+ * Home link is only active on the exact root path. Other links are active
+ * if the current path starts with their href, allowing child pages to
+ * highlight their parent navigation item.
+ * 
+ * @param href - The navigation item's URL
+ * @returns True if the navigation item should be marked as active
+ */
+const isActive = (href: string) => {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
+};
+---
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <div class="nav-logo-wrap">
+      <a href="/" class="nav-logo" aria-label="Verlin's Blog Home">
+        <img src="/logo-dark.png" alt="Verlin" class="nav-logo-img logo-dark" width="112" height="112" />
+        <img src="/logo-light.png" alt="Verlin" class="nav-logo-img logo-light" width="112" height="112" />
+      </a>
+    </div>
+    <div class="nav-scroll">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li class="nav-item">
+            <a 
+              href={item.href} 
+              class:list={['nav-link', { 'nav-link--active': isActive(item.href) }]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="nav-end">
+      <ThemeToggle />
+    </div>
+  </div>
+</nav>
+
+<script>
+  function updateActiveNav() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+      let isActive = false;
+      
+      if (href === '/') {
+        isActive = currentPath === '/';
+      } else if (href) {
+        isActive = currentPath.startsWith(href);
+      }
+      
+      link.classList.toggle('nav-link--active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  // Run on initial load and after each navigation
+  document.addEventListener('astro:page-load', updateActiveNav);
+</script>
+
+<style>
+  .site-nav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(28, 28, 28, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    height: 72px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  /* Light mode: lighter translucent background */
+  :global([data-theme="light"]) .site-nav {
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .nav-logo-wrap {
+    position: absolute;
+    left: 16.666%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    z-index: 10;
+  }
+
+  .nav-logo-img {
+    height: 112px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+  }
+
+  /* Dark mode: show white logo, hide black */
+  .logo-dark { display: block; }
+  .logo-light { display: none; }
+
+  /* Light mode: show black logo, hide white */
+  :global([data-theme="light"]) .logo-dark { display: none; }
+  :global([data-theme="light"]) .logo-light { display: block; }
+
+  .nav-scroll {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+    min-width: max-content;
+  }
+
+  .nav-item {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-link {
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+  }
+
+  .nav-link--active {
+    color: var(--color-text);
+  }
+
+  .nav-end {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    position: relative;
+  }
+
+  :global([data-theme="light"]) .nav-end {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .site-nav {
+      height: 60px;
+    }
+
+    .nav-inner {
+      padding: 0 1rem;
+    }
+
+    .nav-logo-wrap {
+      display: none;
+    }
+
+    .nav-logo-img {
+      height: 2.5rem;
+    }
+
+    .nav-list {
+      justify-content: flex-start;
+      gap: 1.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .nav-link {
+      font-size: 0.75rem;
+    }
+
+    .nav-end {
+      padding: 0 0.5rem;
+    }
+  }
+</style>

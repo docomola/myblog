@@ -1,0 +1,831 @@
+---
+/**
+ * Test Page - 主页设计测试页
+ * 
+ * 这是一个独立的主页副本，用于测试新的设计方案。
+ * 确认效果满意后，再将修改同步到 index.astro。
+ * 
+ * Route: /test
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import StructuredData from '../components/StructuredData.astro';
+import ForwardLink from '../components/ForwardLink.astro';
+import SocialIcons from '../components/SocialIcons.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../config';
+
+const allPosts = await getCollection('writing', ({ data }) => !data.draft);
+const sortedPosts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const latestPosts = sortedPosts.slice(0, 2);
+const recentPostList = sortedPosts.slice(0, 10);
+---
+
+<BaseLayout>
+  <SEO 
+    slot="head"
+    title={`Test - 主页设计测试`}
+    description={siteConfig.description}
+    type="website"
+    noSuffix
+  />
+
+  <StructuredData type="WebSite" />
+  <StructuredData type="Person" />
+
+  <main class="home-page">
+    <!-- HERO CARD (erudite-style) -->
+    <section class="hero-card">
+      <div class="hero-card-inner">
+        <div class="hero-card-left">
+          <h1 class="hero-card-title">
+            <div class="hero-card-line1">Welcome to</div>
+            <div class="hero-card-line2">Verlin&rsquo;s Blog</div>
+          </h1>
+          <p class="hero-card-desc">
+            {siteConfig.description}
+          </p>
+          <div class="hero-card-actions">
+            <a href="/projects" class="hero-card-btn-primary">查看项目</a>
+            <a href="/about" class="hero-card-btn-secondary">关于我</a>
+          </div>
+          <SocialIcons />
+        </div>
+        <div class="hero-card-right">
+          <div class="hero-avatar">
+            <img src="/avatar.png" alt="Verlin" class="hero-avatar-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE-FIRST HERO -->
+    <section class="hero">
+      <div class="hero-grid">
+        <!-- Left: Value Statement -->
+        <div class="hero-left">
+          <h1 class="hero-title">
+            不只是交付项目。<br/>
+            <span class="hero-title-emphasis">我记录每一个决策、权衡和成果。</span>
+          </h1>
+          <p class="hero-sub">
+            一个以案例研究为核心的作品集，而非截图堆砌。
+          </p>
+          <p class="hero-meta">
+            {siteConfig.author.name} · {siteConfig.author.title}
+          </p>
+          <div class="hero-cta">
+            <a href="/blog" class="btn-primary">查看博客</a>
+            <a href="/decisions" class="btn-secondary">我的决策思路</a>
+          </div>
+        </div>
+
+        <!-- Right: Latest Blog Posts -->
+        <div class="hero-right">
+          <div class="case-snapshots">
+            {latestPosts.map((post) => (
+              <a href={`/blog/${post.id}`} class="case-snapshot">
+                <span class="case-label">
+                  博客 · {post.data.publishDate.getFullYear()}/{post.data.publishDate.getMonth() + 1}
+                </span>
+                <span class="case-title">{post.data.title}</span>
+                <span class="case-outcome">{post.data.description}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最新文章列表 - 两列布局 -->
+    <section class="recent-posts">
+      <div class="section-header">
+        <h2>最新文章</h2>
+        <ForwardLink href="/blog" text="查看全部" variant="muted" />
+      </div>
+      <div class="posts-grid">
+        {recentPostList.map((post) => {
+          const date = new Date(post.data.publishDate);
+          const formattedDate = date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+          return (
+            <a href={`/blog/${post.id}`} class="post-item">
+              <span class="post-date">{formattedDate}</span>
+              <span class="post-title">{post.data.title}</span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- 简介 -->
+    <section class="introduction">
+      <h2 class="intro-name">
+        我是 <span class="intro-name-highlight">{siteConfig.author.name}</span>
+      </h2>
+      <p>
+        {siteConfig.author.title}，专注于构建驱动业务增长的系统。
+      </p>
+      <p>
+        每一个重要决策都有记录——因为优秀的工程师不仅构建东西，还解释为什么。
+      </p>
+      <a href="/journey" class="intro-btn">查看我的经历</a>
+    </section>
+
+    <!-- 画廊展示 -->
+    <section class="gallery-preview">
+      <div class="section-header">
+        <h2>画廊</h2>
+        <ForwardLink href="/gallery" text="查看更多" variant="muted" />
+      </div>
+      <div class="gallery-grid-preview">
+        {[1, 2, 3, 4, 5, 6].map((id) => (
+          <a href={`/gallery/${id}`} class="gallery-card">
+            <div class="gallery-card-img" style={`background: linear-gradient(${135 + id * 30}deg, hsl(${id * 60}, 60%, 50%), hsl(${id * 60 + 120}, 60%, 30%))`}>
+              <div class="gallery-card-overlay"></div>
+              <span class="gallery-card-title">作品 {id}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 我喜欢解决的问题 -->
+    <section class="thinking">
+      <h2>我喜欢解决的问题</h2>
+      <p class="thinking-list">
+        如何在扩展系统时不增加复杂度 · 何时选择一致性而非可用性 · 让遗留代码可维护 · 设计长久的 API · 构建能交付的团队 · 将技术债务转化为技术投资 · 记录决策让未来的自己理解过去
+      </p>
+    </section>
+
+    <!-- 号召行动 -->
+    <section class="cta">
+      <h2>一起合作</h2>
+      <p>
+        寻找技术领导力、架构指导，或者需要一个会记录思考的人？来聊聊吧。
+      </p>
+      <div class="cta-buttons">
+        <a href="/projects" class="btn-primary">查看我的作品</a>
+        <a href="/contact" class="btn-secondary">联系我</a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Self-hosted Qwigley font - only loaded on homepage where it's used */
+    @font-face {
+      font-family: 'Qwigley';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/qwigley-400.woff2') format('woff2');
+    }
+
+    .home-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ============================================
+       HERO CARD (erudite-style, top of page)
+       ============================================ */
+    .hero-card {
+      margin: 3rem 0 2rem;
+      padding: 2rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      background: var(--color-bg);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gradient overlay (merox-erudite style) */
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.04), transparent 50%, transparent);
+      pointer-events: none;
+    }
+
+    /* Content layer above gradient */
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .hero-card-left {
+      flex: 2;
+      min-width: 0;
+    }
+
+    .hero-card-right {
+      flex: 1;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-avatar {
+      width: 360px;
+      height: auto;
+      transition: filter 0.3s ease;
+    }
+
+    .hero-avatar:hover {
+      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4)) drop-shadow(0 0 40px rgba(59, 130, 246, 0.2));
+    }
+
+    .hero-avatar-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-avatar:hover .hero-avatar-img {
+      transform: scale(1.05);
+    }
+
+    .hero-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .hero-card-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-card-title {
+      font-size: 2.25rem;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-card-line1 {
+      color: var(--color-text);
+    }
+
+    .hero-card-line2 {
+      color: #3b82f6;
+      font-family: 'Qwigley', cursive;
+      font-weight: 400;
+      font-size: 1.5em;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-card-desc {
+      font-size: 1rem;
+      line-height: 1.625;
+      color: var(--color-text-muted);
+      max-width: 36rem;
+    }
+
+    .hero-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0;
+    }
+
+    .hero-card-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.5rem;
+      background: var(--color-accent);
+      color: var(--color-bg);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .hero-card-btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .hero-card-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.5rem;
+      background: transparent;
+      color: var(--color-text);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+      border-radius: 0.5rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-card-btn-secondary:hover {
+      border-color: var(--color-text-muted);
+      background: var(--color-bg-elevated);
+    }
+
+    @media (min-width: 640px) {
+      .hero-card {
+        padding: 2.5rem;
+      }
+
+      .hero-card-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-card {
+        padding: 3rem;
+      }
+
+      .hero-card-title {
+        font-size: 3.75rem;
+      }
+
+      .hero-card-desc {
+        font-size: 1.125rem;
+      }
+    }
+
+    .hero {
+      padding: 2rem 1.5rem 5rem;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .hero-left {
+      padding-right: 2rem;
+    }
+
+    .hero-title {
+      font-size: 2.25rem;
+      line-height: 1.3;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--color-text);
+    }
+
+    .hero-title-emphasis {
+      color: var(--color-text-secondary);
+    }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--color-text);
+      color: var(--color-bg);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      color: var(--color-text);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      transition: border-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-text-secondary);
+    }
+
+    .hero-right {
+      padding-top: 0.5rem;
+    }
+
+    .case-snapshots {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .case-snapshot {
+      display: block;
+      padding: 1.25rem 1.5rem;
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .case-snapshot:hover {
+      border-color: var(--color-text-muted);
+      background: var(--color-bg-elevated);
+    }
+
+    .case-label {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      margin-bottom: 0.375rem;
+    }
+
+    .case-title {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .case-outcome {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       RECENT POSTS GRID (two-column layout)
+       ============================================ */
+    .recent-posts {
+      margin-bottom: 4rem;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    .post-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.875rem;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .post-item:hover {
+      background: rgba(59, 130, 246, 0.06);
+      transform: translateX(4px);
+    }
+
+    .post-item:hover .post-title {
+      color: #3b82f6;
+    }
+
+    .post-date {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      min-width: 3.5rem;
+    }
+
+    .post-title {
+      font-size: 0.9375rem;
+      font-weight: 450;
+      color: var(--color-text);
+      line-height: 1.5;
+      transition: color 0.25s ease;
+    }
+
+    @media (max-width: 640px) {
+      .posts-grid {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+
+      .post-item:hover {
+        transform: translateX(2px);
+      }
+    }
+
+    /* ============================================
+       GALLERY PREVIEW
+       ============================================ */
+    .gallery-preview {
+      margin-bottom: 5rem;
+    }
+
+    .gallery-grid-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .gallery-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .gallery-card-img {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      background: var(--color-bg-secondary);
+      display: flex;
+      align-items: flex-end;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+    }
+
+    .gallery-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.08) 100%);
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .gallery-card-title {
+      position: relative;
+      z-index: 2;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #fff;
+      padding: 1rem 1.25rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+      letter-spacing: 0.01em;
+    }
+
+    .gallery-card:hover .gallery-card-img {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .gallery-card:hover .gallery-card-overlay {
+      opacity: 0.4;
+    }
+
+    /* Light mode: white overlay */
+    :global([data-theme="light"]) .gallery-card-overlay {
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 100%);
+    }
+
+    :global([data-theme="light"]) .gallery-card-title {
+      color: #1a1a1a;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
+    }
+
+    :global([data-theme="light"]) .gallery-card:hover .gallery-card-img {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid-preview {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .gallery-grid-preview {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .introduction {
+      max-width: 600px;
+      margin: 0 auto 5rem;
+      text-align: center;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+    }
+
+    .intro-name {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      color: var(--color-text);
+    }
+
+    .intro-name-highlight {
+      color: #3b82f6;
+    }
+
+    .intro-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.625rem 1.5rem;
+      background: var(--color-text);
+      color: var(--color-bg);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .intro-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .introduction p {
+      margin-bottom: 1rem;
+    }
+
+    .introduction p:first-child {
+      color: var(--color-text);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .thinking {
+      margin-bottom: 5rem;
+    }
+
+    .thinking h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .thinking-list {
+      font-size: 1.0625rem;
+      line-height: 1.9;
+      color: var(--color-text-secondary);
+      max-width: 680px;
+    }
+
+    .cta {
+      padding: 3rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .cta h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .cta p {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .home-page {
+        padding: 0 1rem 3rem;
+      }
+
+      .hero-card {
+        margin: 1.5rem 0 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .hero-card-inner {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .hero-card-right {
+        display: none;
+      }
+
+      .hero-card-title {
+        font-size: 2rem;
+      }
+
+      .hero-card-btn-primary,
+      .hero-card-btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-left {
+        padding-right: 0;
+      }
+
+      .hero-title {
+        font-size: 1.75rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        text-align: center;
+        width: 100%;
+      }
+
+      .case-snapshot {
+        padding: 1rem 1.25rem;
+      }
+
+      .introduction {
+        font-size: 1rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .decision-title {
+        font-size: 1rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .cta-buttons .btn-primary,
+      .cta-buttons .btn-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</BaseLayout>

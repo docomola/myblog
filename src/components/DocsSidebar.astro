@@ -1,0 +1,100 @@
+---
+/**
+ * DocsSidebar — auto-generated from content/docs/ folder structure
+ */
+
+interface DocLink {
+  label: string;
+  href: string;
+}
+
+interface DocSection {
+  folder: string;
+  links: DocLink[];
+}
+
+interface Props {
+  sections: DocSection[];
+  currentPath: string;
+}
+
+const { sections, currentPath } = Astro.props;
+---
+
+<nav class="docs-sidebar">
+  {sections.map((section) => (
+    <div class="sidebar-section">
+      <span class="sidebar-group-label">{section.folder}</span>
+      <ul class="sidebar-list">
+        {section.links.map((link) => (
+          <li class="sidebar-item">
+            <a href={link.href} class={`sidebar-link ${currentPath === link.href ? 'active' : ''}`}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</nav>
+
+<style>
+  .docs-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    padding: 2rem 1rem 2rem 0;
+    position: sticky;
+    top: 64px;
+    max-height: calc(100vh - 64px);
+    border-right: 1px solid var(--color-border);
+  }
+
+  .sidebar-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-group-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    padding: 0 0.75rem;
+  }
+
+  .sidebar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar-item { margin: 0; }
+
+  .sidebar-link {
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 0.375rem;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.5;
+  }
+
+  .sidebar-link:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+  }
+
+  .sidebar-link.active {
+    background: rgba(59, 130, 246, 0.1);
+    color: #60a5fa;
+    font-weight: 500;
+  }
+
+  @media (max-width: 1024px) {
+    .docs-sidebar { display: none; }
+  }
+</style>

@@ -1,0 +1,8 @@
+/* Self-hosted Qwigley font (signature/handwriting) */
+@font-face {
+  font-family: 'Qwigley';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/qwigley-400.woff2') format('woff2');
+}

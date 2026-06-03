@@ -1,0 +1,80 @@
+---
+title: "使用 Astro + Starlight 搭建技术文档站点"
+description: "从零开始，用 Astro 和 Starlight 主题快速搭建一个专业的技术文档站点，包含完整的配置流程。"
+publishDate: 2026-05-19
+tags:
+  - "astro"
+  - "文档"
+  - "starlight"
+  - "前端"
+draft: false
+category: 前端
+---
+
+## 为什么选择 Astro
+
+Astro 是一个现代化的静态站点生成器，它的核心优势在于：
+
+- **零 JS 默认输出** — 默认情况下不会向客户端发送 JavaScript，仅在需要时才加载
+- **多框架支持** — 可以在同一个项目中使用 React、Vue、Svelte 等组件
+- **岛屿架构** — 每个交互组件是独立的「岛屿」，互不影响
+
+## 搭建步骤
+
+### 1. 创建项目
+
+```bash
+npm create astro@latest my-docs
+cd my-docs
+npm install
+```
+
+### 2. 安装 Starlight 主题
+
+```bash
+npx astro add starlight
+```
+
+### 3. 配置站点
+
+在 `astro.config.mjs` 中配置：
+
+```js
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+
+export default defineConfig({
+  integrations: [
+    starlight({
+      title: '我的技术文档',
+      social: {
+        github: 'https://github.com/username',
+      },
+      sidebar: [
+        {
+          label: '开始',
+          items: [
+            { label: '简介', slug: 'intro' },
+            { label: '安装', slug: 'install' },
+          ],
+        },
+      ],
+    }),
+  ],
+});
+```
+
+### 4. 编写文档
+
+在 `src/content/docs/` 下创建 `.md` 或 `.mdx` 文件，文档会自动显示在侧边栏中。
+
+## 高级配置
+
+- **自定义主题**：通过 CSS 变量覆盖默认样式
+- **多语言**：Starlight 内置 i18n 支持
+- **搜索**：内置本地搜索，无需外部服务
+- **SEO**：自动生成 Open Graph 和 Twitter Card 标签
+
+## 总结
+
+Starlight 是 Astro 生态中最成熟的文档主题，适合构建任何规模的技术文档站点。它的设计哲学是「内容优先」，将大部分配置和样式都交给框架处理，让作者专注于写作。

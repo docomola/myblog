@@ -1,0 +1,93 @@
+---
+title: "CSS 变量实现深色模式的最佳实践"
+description: "利用 CSS 自定义属性（变量）实现网站深色模式切换，不需要任何 JavaScript 框架。"
+publishDate: 2026-05-28
+tags:
+  - "css"
+  - "深色模式"
+  - "theme"
+draft: false
+category: 前端
+---
+
+## 为什么用 CSS 变量
+
+传统的深色模式实现通常需要两套样式表或 JavaScript 切换类名。CSS 变量（Custom Properties）提供了一种更优雅的方式：
+
+- **单一来源** — 所有颜色定义在一个位置
+- **运行时切换** — 无需重新加载页面
+- **系统偏好检测** — 自动跟随操作系统主题
+
+## 核心实现
+
+### 1. 定义变量
+
+```css
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #e5e5e5;
+  --color-accent: #3b82f6;
+}
+
+[data-theme="dark"] {
+  --color-bg: #1c1c1c;
+  --color-text: #fbfbfb;
+  --color-border: #333333;
+  --color-accent: #60a5fa;
+}
+```
+
+### 2. 使用变量
+
+```css
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.card {
+  border: 1px solid var(--color-border);
+}
+```
+
+### 3. 切换主题
+
+```js
+const toggle = document.querySelector('#theme-toggle');
+toggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+```
+
+## 进阶技巧
+
+### 自动跟随系统偏好
+
+```js
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+const stored = localStorage.getItem('theme');
+const theme = stored || (prefersDark.matches ? 'dark' : 'light');
+document.documentElement.setAttribute('data-theme', theme);
+```
+
+### 防止页面闪烁
+
+在 `<head>` 中插入内联脚本：
+
+```html
+<script>
+  (function() {
+    const t = localStorage.getItem('theme') ||
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+```
+
+## 总结
+
+CSS 变量方案轻量、灵活，不需要任何第三方库。配合 `data-theme` 属性和少量 JavaScript，就能实现专业的主题切换体验。

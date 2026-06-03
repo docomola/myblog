@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import DocsLayout from '../layouts/DocsLayout.astro';
+
+const docs = await getCollection('docs');
+const sectionMap = new Map<string, { label: string; href: string }[]>();
+docs.forEach(d => {
+  const docSlug = d.id.replace(/\.md$/, '').replace(/\\/g, '/');
+  const parts = docSlug.split('/');
+  if (parts.length >= 2) {
+    const folder = parts[0];
+    if (!sectionMap.has(folder)) sectionMap.set(folder, []);
+    sectionMap.get(folder)!.push({ label: d.data.title, href: '/docs/' + docSlug });
+  }
+});
+const sidebarSections = Array.from(sectionMap.entries()).map(([folder, links]) => ({
+  folder,
+  links,
+}));
+---
+
+<DocsLayout
+  title="技术文档"
+  sidebarSections={sidebarSections}
+  currentPath="/docs"
+  breadcrumbs={[{ label: '技术文档' }]}
+>
+  <p class="lead">
+    这里记录了技术文档和学习笔记，方便查阅和分享。
+    从左侧导航选择一个主题开始阅读。
+  </p>
+
+  <div class="feature-cards">
+    <div class="feature-card">
+      <h3>🚀 快速开始</h3>
+      <p>从零搭建项目，快速上手。<br/><a href="/docs/getting-started/introduction/quickstart">开始 →</a></p>
+    </div>
+    <div class="feature-card">
+      <h3>📖 完整指引</h3>
+      <p>涵盖组件、内容编辑、配置等各个方面。<br/><a href="/docs/getting-started/introduction/overview">浏览 →</a></p>
+    </div>
+  </div>
+
+  <hr />
+
+  <h2>为什么选择这个文档系统？</h2>
+  <ul>
+    <li><strong>三栏布局</strong> — 侧边导航 + 内容 + 页面目录，高效浏览</li>
+    <li><strong>渐进式加载</strong> — 只加载当前页面内容，速度快</li>
+    <li><strong>深色模式</strong> — 自动适配系统主题</li>
+    <li><strong>Markdown + Astro</strong> — 灵活的内容编写方式</li>
+  </ul>
+</DocsLayout>

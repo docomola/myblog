@@ -1,0 +1,256 @@
+---
+/**
+ * 博客索引页 — URL 路由筛选 + 分页
+ * /blog              → 全部, page 1
+ * /blog/2            → 全部, page 2
+ * /blog/前端          → 前端 filter, page 1
+ * /blog/前端/2        → 前端 filter, page 2
+ * /blog/2026/5        → 2026年5月 filter, page 1
+ * /blog/2026/5/2      → 2026年5月 filter, page 2
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SEO from '../../components/SEO.astro';
+import Pagination from '../../components/Pagination.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import PageStats from '../../components/PageStats.astro';
+import { getCollection } from 'astro:content';
+import { pagesConfig } from '../../pages.config';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const PER_PAGE = 6;
+  const all = await getCollection('writing', ({ data }) => !data.draft);
+  const sorted = all.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+  const paths: { params: { rest: string | undefined } }[] = [];
+
+  // 1) No filter — /blog, /blog/2, ...
+  const totalAllPages = Math.ceil(sorted.length / PER_PAGE);
+  for (let p = 1; p <= totalAllPages; p++) {
+    paths.push({ params: { rest: p === 1 ? undefined : String(p) } });
+  }
+
+  // 2) Category filter — /blog/分类, /blog/分类/2, ...
+  const categories = new Set(sorted.map(a => a.id.split('/')[0]));
+  for (const cat of categories) {
+    const filtered = sorted.filter(a => a.id.split('/')[0] === cat);
+    const totalPages = Math.ceil(filtered.length / PER_PAGE);
+    for (let p = 1; p <= totalPages; p++) {
+      paths.push({ params: { rest: p === 1 ? cat : `${cat}/${p}` } });
+    }
+  }
+
+  // 3) Year-month filter — /blog/2026/5, /blog/2026/5/2, ...
+  const ymSet = new Set<string>();
+  sorted.forEach(a => {
+    const d = a.data.publishDate;
+    ymSet.add(`${d.getFullYear()}/${d.getMonth() + 1}`);
+  });
+  for (const ym of ymSet) {
+    const [y, m] = ym.split('/');
+    const filtered = sorted.filter(a => {
+      const d = a.data.publishDate;
+      return d.getFullYear() === Number(y) && d.getMonth() + 1 === Number(m);
+    });
+    const totalPages = Math.ceil(filtered.length / PER_PAGE);
+    for (let p = 1; p <= totalPages; p++) {
+      paths.push({ params: { rest: p === 1 ? ym : `${ym}/${p}` } });
+    }
+  }
+
+  return paths;
+};
+
+const { rest = '' } = Astro.params;
+const segments = String(rest).split('/').filter(Boolean);
+const all = await getCollection('writing', ({ data }) => !data.draft);
+const sorted = all.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const PER_PAGE = 6;
+
+// Parse URL: determine filter type
+let filtered = sorted;
+let filterLabel = '全部';
+let baseUrl = '/blog';
+
+if (segments.length >= 1) {
+  const isYear = /^\d{4}$/.test(segments[0]);
+  const isCategory = !isYear && sorted.some(a => a.id.split('/')[0] === segments[0]);
+
+  if (isYear && segments.length >= 2) {
+    const y = Number(segments[0]);
+    const m = Number(segments[1]);
+    filtered = sorted.filter(a => {
+      const d = a.data.publishDate;
+      return d.getFullYear() === y && d.getMonth() + 1 === m;
+    });
+    filterLabel = `${y}年${m}月`;
+    baseUrl = `/blog/${segments[0]}/${segments[1]}`;
+  } else if (isCategory) {
+    filtered = sorted.filter(a => a.id.split('/')[0] === segments[0]);
+    filterLabel = segments[0];
+    baseUrl = `/blog/${segments[0]}`;
+  } else if (/^\d+$/.test(segments[0])) {
+    baseUrl = '/blog';
+  }
+}
+
+// Pagination
+const isYearMonthFilter = /^\d{4}$/.test(segments[0]) && segments.length >= 2 && /^\d{1,2}$/.test(segments[1]);
+const lastSegment = segments[segments.length - 1];
+const isPageNum = /^\d+$/.test(lastSegment);
+// For year/month URLs like /blog/2026/5, the "5" is the month, not a page number
+// Only treat as page if there's a 3rd segment (e.g., /blog/2026/5/2)
+const currentPage = (isYearMonthFilter && segments.length === 2) ? 1 : (isPageNum ? Number(lastSegment) : 1);
+const totalPages = Math.ceil(filtered.length / PER_PAGE);
+const paged = filtered.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
+
+// Data for sidebar
+const catMap = new Map<string, number>();
+sorted.forEach(a => {
+  const c = a.id.split('/')[0];
+  catMap.set(c, (catMap.get(c) || 0) + 1);
+});
+const categories = Array.from(catMap.entries()).sort((a, b) => b[1] - a[1]);
+
+const timelineMap = new Map<number, Map<number, number>>();
+sorted.forEach(a => {
+  const d = a.data.publishDate;
+  const y = d.getFullYear();
+  const m = d.getMonth() + 1;
+  if (!timelineMap.has(y)) timelineMap.set(y, new Map());
+  timelineMap.get(y)!.set(m, (timelineMap.get(y)!.get(m) || 0) + 1);
+});
+const timeline = Array.from(timelineMap.entries())
+  .sort(([a], [b]) => b - a)
+  .map(([year, months]) => ({
+    year,
+    months: Array.from(months.entries()).sort(([a], [b]) => b - a),
+    yearTotal: Array.from(months.values()).reduce((a, b) => a + b, 0),
+  }));
+
+const pageTitle = `博客 - ${filterLabel}`;
+---
+
+<BaseLayout>
+  <SEO slot="head" title={pageTitle} description={pagesConfig.writing.description} type="website" />
+
+  <div class="blog-layout">
+    <aside class="blog-timeline">
+      <h3 class="timeline-title">Time</h3>
+      <div class="timeline-list">
+        <a href="/blog" class={`timeline-all ${filterLabel === '全部' ? 'active' : ''}`}>
+          <span class="timeline-dot"></span>
+          全部文章 <span class="timeline-count">{sorted.length}</span>
+        </a>
+        {timeline.map(({ year, months, yearTotal }) => (
+          <div class="timeline-year" data-year>
+            <button class="timeline-year-header" aria-expanded="true" data-year-toggle>
+              <span class="timeline-triangle"></span>
+              <span class="timeline-year-label">{year}</span>
+              <span class="timeline-count">{yearTotal}</span>
+            </button>
+            <div class="timeline-months">
+              {months.map(([month, count]) => (
+                <a href={`/blog/${year}/${month}`} class={`timeline-month ${filterLabel === `${year}年${month}月` ? 'active' : ''}`}>
+                  <span>{month}月</span>
+                  <span class="timeline-count">{count}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </aside>
+
+    <main class="blog-main">
+      <!-- Hero Header (gallery style) -->
+      <header class="blog-hero">
+        <div class="blog-hero-top">
+          <span class="blog-hero-label">Writing</span>
+          <span class="blog-hero-status">
+            <span class="status-dot"></span>
+            Available for work
+          </span>
+        </div>
+        <h1 class="blog-hero-title">Blog.</h1>
+        <p class="blog-hero-count">共 {sorted.length} 篇文章{filterLabel !== '全部' ? ` · ${filterLabel}` : ''}</p>
+      </header>
+
+      <!-- 分类筛选 -->
+      <nav class="blog-categories">
+        <a href="/blog" class={`cat-item ${filterLabel === '全部' ? 'cat-active' : ''}`}>全部</a>
+        {categories.map(([name, count]) => (
+          <a href={`/blog/${name}`} class={`cat-item ${filterLabel === name ? 'cat-active' : ''}`}>{name}</a>
+        ))}
+      </nav>
+
+      <PageStats text={`${filterLabel === '全部' ? '' : filterLabel + ' · '}共 ${filtered.length} 篇${totalPages > 1 ? ` · 第 ${currentPage} 页` : ''}`} />
+
+      <div class="blog-card-list">
+        {paged.map(article => (
+          <ArticleCard
+            title={article.data.title}
+            slug={article.id}
+            description={article.data.description}
+            publishDate={article.data.publishDate}
+            tags={article.data.tags}
+          />
+        ))}
+      </div>
+
+      {totalPages > 1 && (
+        <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl={baseUrl} />
+      )}
+    </main>
+  </div>
+
+  <style>
+    .blog-layout { display: flex; max-width: 1400px; margin: 0 auto; padding: 2rem 3rem 4rem 10rem; gap: 3rem; }
+    .blog-timeline { width: 220px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; margin-top: 6rem; }
+    .timeline-title { font-family: 'Unbounded', sans-serif; font-size: 1.125rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-text); margin-bottom: 1.5rem; }
+    .timeline-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .timeline-all, .timeline-month { display: flex; align-items: center; gap: 0.5rem; width: 100%; padding: 0.4rem 0.6rem; font-size: 0.8125rem; color: var(--color-text-secondary); background: none; border: none; border-radius: 0.375rem; cursor: pointer; text-align: left; text-decoration: none; transition: all 0.15s; }
+    .timeline-all:hover, .timeline-month:hover { background: var(--color-bg-secondary); color: var(--color-text); }
+    .timeline-all.active, .timeline-month.active { background: rgba(59,130,246,0.1); color: #60a5fa; font-weight: 500; }
+    .timeline-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-border); flex-shrink: 0; }
+    .timeline-all.active .timeline-dot, .timeline-month.active .timeline-dot { background: #60a5fa; }
+    .timeline-count { font-size: 0.7rem; color: var(--color-text-muted); margin-left: auto; }
+    .timeline-year { display: flex; flex-direction: column; gap: 0.25rem; }
+    .timeline-year-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0; font-size: 1.5rem; font-family: 'Unbounded', sans-serif; font-weight: 700; color: var(--color-text); letter-spacing: -0.01em; background: none; border: none; cursor: pointer; width: 100%; text-align: left; }
+    .timeline-year-label { flex: 1; }
+    .timeline-triangle { display: inline-block; width: 0; height: 0; border-left: 6px solid var(--color-text-muted); border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: transform 0.3s ease; flex-shrink: 0; margin-right: 2px; }
+    .timeline-year.collapsed .timeline-triangle { transform: rotate(0deg); }
+    .timeline-year:not(.collapsed) .timeline-triangle { transform: rotate(90deg); }
+    .timeline-months { display: flex; flex-direction: column; padding-left: 1rem; margin-left: 0.25rem; border-left: 1px solid var(--color-border); overflow: hidden; max-height: 500px; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 1; }
+    .timeline-year.collapsed .timeline-months { max-height: 0; opacity: 0; }
+    .blog-main { flex: 1; min-width: 0; }
+
+    /* Hero Header (gallery style) */
+    .blog-hero { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); }
+    .blog-hero-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .blog-hero-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-text-muted); }
+    .blog-hero-status { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--color-text-secondary); }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block; }
+    .blog-hero-title { font-family: 'Unbounded', sans-serif; font-size: 3.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: var(--color-text); margin-bottom: 0.5rem; }
+    .blog-hero-count { font-size: 0.875rem; color: var(--color-text-muted); font-weight: 400; }
+
+    .blog-categories { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-border); }
+    .cat-item { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.5rem 1.25rem; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; border: 1px solid var(--color-border); color: var(--color-text-secondary); background: none; cursor: pointer; text-decoration: none; transition: all 0.2s ease; }
+    .cat-item:hover { border-color: var(--color-text-muted); color: var(--color-text); background: var(--color-bg-secondary); }
+    .cat-active { background: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+    .blog-card-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 760px; }
+    @media (max-width: 900px) { .blog-timeline { display: none; } .blog-layout { padding: 1.5rem 1rem 3rem; } .blog-hero-title { font-size: 2.5rem; } }
+    @media (max-width: 600px) { .blog-hero-title { font-size: 2rem; } }
+  </style>
+
+  <script is:inline>
+    document.querySelectorAll('[data-year-toggle]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const yearEl = btn.closest('[data-year]');
+        if (!yearEl) return;
+        yearEl.classList.toggle('collapsed');
+        btn.setAttribute('aria-expanded', !yearEl.classList.contains('collapsed'));
+      });
+    });
+  </script>
+</BaseLayout>

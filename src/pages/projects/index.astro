@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SEO from '../../components/SEO.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { pagesConfig } from '../../pages.config';
+
+const allProjects = await getCollection('projects');
+
+const sortedProjects = allProjects.sort((a, b) => {
+  if (a.data.order !== undefined && b.data.order !== undefined) {
+    return a.data.order - b.data.order;
+  }
+  if (a.data.order !== undefined) return -1;
+  if (b.data.order !== undefined) return 1;
+  return b.data.year - a.data.year;
+});
+
+const totalProjects = sortedProjects.length;
+const featuredCount = sortedProjects.filter(p => p.data.featured).length;
+
+// Build year timeline
+const yearMap = new Map<number, number>();
+sortedProjects.forEach(p => {
+  const y = p.data.year;
+  yearMap.set(y, (yearMap.get(y) || 0) + 1);
+});
+const years = Array.from(yearMap.entries()).sort(([a], [b]) => b - a);
+
+// Collect unique statuses
+const statuses = [...new Set(sortedProjects.map(p => p.data.status).filter(Boolean))];
+---
+
+<BaseLayout>
+  <SEO
+    slot="head"
+    title={pagesConfig.projects.title}
+    description={pagesConfig.projects.description}
+    type="website"
+  />
+
+  <div class="projects-layout">
+    <!-- Left Sidebar -->
+    <aside class="projects-sidebar">
+      <h3 class="sidebar-title">Time</h3>
+      <div class="sidebar-list">
+        <a href="/projects" class="sidebar-link active">
+          <span class="sidebar-dot"></span>
+          全部项目 <span class="sidebar-count">{totalProjects}</span>
+        </a>
+        {years.map(([year, count]) => (
+          <div class="sidebar-year">
+            <div class="sidebar-year-label">{year}</div>
+            <a href={`/projects?year=${year}`} class="sidebar-link" data-year-link={year}>
+              <span class="sidebar-dot"></span>
+              {count} 个项目
+            </a>
+          </div>
+        ))}
+      </div>
+
+      {statuses.length > 0 && (
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Status</h3>
+          <div class="sidebar-list">
+            {statuses.map(status => {
+              const count = sortedProjects.filter(p => p.data.status === status).length;
+              return (
+                <a href={`/projects?status=${status}`} class="sidebar-link" data-status-link={status}>
+                  <span class="sidebar-dot"></span>
+                  {status} <span class="sidebar-count">{count}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </aside>
+
+    <!-- Right Main Content -->
+    <main class="projects-main">
+      <!-- Hero Header -->
+      <header class="page-hero">
+        <div class="page-hero-top">
+          <span class="page-hero-label">Work</span>
+          <span class="page-hero-status">
+            <span class="status-dot"></span>
+            Available for work
+          </span>
+        </div>
+        <h1 class="page-hero-title">Projects.</h1>
+        <p class="page-hero-count">{totalProjects} projects · {featuredCount} featured</p>
+      </header>
+
+      {sortedProjects.length > 0 ? (
+        <div class="card-list">
+          {sortedProjects.map((project) => (
+            <div class="project-card-wrapper" data-year={project.data.year} data-status={project.data.status || ''}>
+              <ProjectCard
+                title={project.data.title}
+                slug={project.id}
+                outcomeSummary={project.data.outcomeSummary}
+                role={project.data.role}
+                year={project.data.year}
+                techStack={project.data.techStack}
+                featured={project.data.featured}
+                status={project.data.status}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state">No projects available yet.</p>
+      )}
+    </main>
+  </div>
+
+  <script is:inline>
+    // Filter by ?year= or ?status= URL params
+    const params = new URLSearchParams(window.location.search);
+    const filterYear = params.get('year');
+    const filterStatus = params.get('status');
+    const cards = document.querySelectorAll('.project-card-wrapper');
+
+    if (filterYear || filterStatus) {
+      // Update active sidebar link
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      if (filterYear) {
+        const link = document.querySelector(`[data-year-link="${filterYear}"]`);
+        if (link) link.classList.add('active');
+      }
+      if (filterStatus) {
+        const link = document.querySelector(`[data-status-link="${filterStatus}"]`);
+        if (link) link.classList.add('active');
+      }
+
+      // Filter cards
+      cards.forEach(card => {
+        const cardYear = card.getAttribute('data-year');
+        const cardStatus = card.getAttribute('data-status');
+        let show = true;
+        if (filterYear && cardYear !== filterYear) show = false;
+        if (filterStatus && cardStatus !== filterStatus) show = false;
+        card.style.display = show ? '' : 'none';
+      });
+    }
+  </script>
+
+  <style>
+    .projects-layout {
+      display: flex;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem 10rem;
+      gap: 3rem;
+    }
+
+    /* Sidebar */
+    .projects-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      align-self: flex-start;
+      margin-top: 6rem;
+    }
+    .sidebar-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-section {
+      margin-top: 2rem;
+    }
+    .sidebar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      background: none;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      text-align: left;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      background: var(--color-bg-secondary);
+      color: var(--color-text);
+    }
+    .sidebar-link.active {
+      background: rgba(59,130,246,0.1);
+      color: #60a5fa;
+      font-weight: 500;
+    }
+    .sidebar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-border);
+      flex-shrink: 0;
+    }
+    .sidebar-link.active .sidebar-dot {
+      background: #60a5fa;
+    }
+    .sidebar-count {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      margin-left: auto;
+    }
+    .sidebar-year {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .sidebar-year-label {
+      padding: 0.375rem 0;
+      font-size: 1.5rem;
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+
+    /* Main Content */
+    .projects-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Hero */
+    .page-hero {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .page-hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .page-hero-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+    }
+    .page-hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      display: inline-block;
+    }
+    .page-hero-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+    .page-hero-count {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      font-weight: 400;
+    }
+
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 800px;
+    }
+
+    @media (max-width: 900px) {
+      .projects-sidebar { display: none; }
+      .projects-layout { padding: 1.5rem 1rem 3rem; }
+      .page-hero-title { font-size: 2.5rem; }
+    }
+    @media (max-width: 480px) {
+      .page-hero-title { font-size: 2rem; }
+      .page-hero-top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    }
+  </style>
+</BaseLayout>

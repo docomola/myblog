@@ -1,0 +1,73 @@
+---
+/**
+ * Breadcrumb Component
+ * Path navigation for docs pages
+ */
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label="面包屑导航">
+  <ol class="breadcrumb-list">
+    {items.map((item, i) => (
+      <li class="breadcrumb-item">
+        {i > 0 && <span class="breadcrumb-sep" aria-hidden="true">›</span>}
+        {item.href ? (
+          <a href={item.href} class="breadcrumb-link">{item.label}</a>
+        ) : (
+          <span class="breadcrumb-current" aria-current="page">{item.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-text);
+  }
+
+  .breadcrumb-sep {
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-text-secondary);
+  }
+</style>

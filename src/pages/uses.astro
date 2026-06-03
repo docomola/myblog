@@ -1,0 +1,406 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+
+interface LinkItem {
+  name: string;
+  url: string;
+  desc: string;
+}
+
+const navData: { category: string; icon: string; links: LinkItem[] }[] = [
+  {
+    category: '开发工具',
+    icon: '🔧',
+    links: [
+      { name: 'GitHub', url: 'https://github.com', desc: '全球最大的代码托管平台' },
+      { name: 'VS Code', url: 'https://code.visualstudio.com', desc: '微软出品的免费代码编辑器' },
+      { name: 'CodePen', url: 'https://codepen.io', desc: '在线前端代码编辑器与社区' },
+      { name: 'StackBlitz', url: 'https://stackblitz.com', desc: '浏览器中的 Web IDE' },
+      { name: 'Regex101', url: 'https://regex101.com', desc: '在线正则表达式测试工具' },
+      { name: 'JSON Formatter', url: 'https://jsonformatter.org', desc: 'JSON 格式化和验证工具' },
+    ],
+  },
+  {
+    category: '前端资源',
+    icon: '🎨',
+    links: [
+      { name: 'MDN Web Docs', url: 'https://developer.mozilla.org/zh-CN/', desc: '最权威的 Web 开发文档' },
+      { name: 'Can I Use', url: 'https://caniuse.com', desc: '浏览器兼容性查询' },
+      { name: 'Tailwind CSS', url: 'https://tailwindcss.com', desc: '原子化 CSS 框架' },
+      { name: 'Astro', url: 'https://astro.build', desc: '现代静态站点生成器' },
+      { name: 'Iconify', url: 'https://icon-sets.iconify.design', desc: '开源图标库聚合搜索' },
+      { name: 'Google Fonts', url: 'https://fonts.google.com', desc: '免费 Web 字体库' },
+    ],
+  },
+  {
+    category: 'AI 工具',
+    icon: '✨',
+    links: [
+      { name: 'ChatGPT', url: 'https://chat.openai.com', desc: 'OpenAI 的对话式 AI 助手' },
+      { name: 'Claude', url: 'https://claude.ai', desc: 'Anthropic 的 AI 助手' },
+      { name: 'Gemini', url: 'https://gemini.google.com', desc: 'Google 出品的 AI 助手' },
+      { name: 'Hugging Face', url: 'https://huggingface.co', desc: 'AI 模型社区与平台' },
+      { name: 'Cursor', url: 'https://cursor.sh', desc: 'AI 驱动的代码编辑器' },
+      { name: 'v0.dev', url: 'https://v0.dev', desc: 'AI 生成 UI 组件' },
+    ],
+  },
+  {
+    category: '学习资源',
+    icon: '📖',
+    links: [
+      { name: 'FreeCodeCamp', url: 'https://freecodecamp.org/zh', desc: '免费编程学习平台' },
+      { name: '阮一峰的网络日志', url: 'https://ruanyifeng.com/blog/archives.html', desc: '中文技术博客' },
+      { name: '掘金', url: 'https://juejin.cn', desc: '中文开发者社区' },
+      { name: 'Dev.to', url: 'https://dev.to', desc: '全球开发者社区' },
+      { name: 'CSS-Tricks', url: 'https://css-tricks.com', desc: 'CSS 技巧与教程' },
+    ],
+  },
+  {
+    category: '部署与云服务',
+    icon: '☁️',
+    links: [
+      { name: 'Vercel', url: 'https://vercel.com', desc: '无服务器部署平台' },
+      { name: 'Netlify', url: 'https://netlify.com', desc: '静态网站部署服务' },
+      { name: 'Cloudflare Pages', url: 'https://pages.cloudflare.com', desc: 'Cloudflare 的静态托管' },
+      { name: 'Docker Hub', url: 'https://hub.docker.com', desc: '容器镜像仓库' },
+      { name: 'Railway', url: 'https://railway.app', desc: '简化的云部署平台' },
+    ],
+  },
+];
+
+const totalLinks = navData.reduce((sum, cat) => sum + cat.links.length, 0);
+const totalCats = navData.length;
+---
+
+<BaseLayout>
+  <SEO slot="head" title="工具 - 网址导航" description="常用开发工具和网站收藏" type="website" />
+
+  <div class="uses-layout">
+    <!-- Left Sidebar -->
+    <aside class="uses-sidebar">
+      <h3 class="sidebar-title">Category</h3>
+      <div class="sidebar-list">
+        <a href="#all" class="sidebar-link active" data-cat-link="all">
+          <span class="sidebar-dot"></span>
+          全部 <span class="sidebar-count">{totalLinks}</span>
+        </a>
+        {navData.map(({ category, icon, links }) => (
+          <a href={`#${category}`} class="sidebar-link" data-cat-link={category}>
+            <span class="sidebar-dot"></span>
+            {category} <span class="sidebar-count">{links.length}</span>
+          </a>
+        ))}
+      </div>
+    </aside>
+
+    <!-- Right Main -->
+    <main class="uses-main">
+      <!-- Hero Header -->
+      <header class="uses-hero">
+        <div class="uses-hero-top">
+          <span class="uses-hero-label">Tools</span>
+          <span class="uses-hero-status">
+            <span class="status-dot"></span>
+            Available for work
+          </span>
+        </div>
+        <h1 class="uses-hero-title">Uses.</h1>
+        <p class="uses-hero-count">{totalLinks} links · {totalCats} categories</p>
+      </header>
+
+      <!-- Category Sections -->
+      {navData.map(({ category, icon, links }) => (
+        <section class="nav-section" id={category}>
+          <h2 class="nav-category">
+            <span class="nav-category-icon">{icon}</span>
+            {category}
+          </h2>
+          <div class="nav-grid">
+            {links.map(({ name, url, desc }) => (
+              <a href={url} target="_blank" rel="noopener noreferrer" class="nav-card">
+                <div class="nav-card-inner">
+                  <h3 class="nav-card-name">{name}</h3>
+                  <div class="nav-card-arrow">↗</div>
+                </div>
+                <p class="nav-card-desc">{desc}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  </div>
+
+  <script is:inline>
+    // Highlight sidebar link on scroll
+    const sections = document.querySelectorAll('.nav-section');
+    const sidebarLinks = document.querySelectorAll('[data-cat-link]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          sidebarLinks.forEach(l => l.classList.remove('active'));
+          const match = document.querySelector(`[data-cat-link="${id}"]`);
+          if (match) match.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    // Click sidebar to scroll
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const cat = link.getAttribute('data-cat-link');
+        if (cat === 'all') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          sidebarLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          return;
+        }
+        const target = document.getElementById(cat);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .uses-layout {
+      display: flex;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem 10rem;
+      gap: 3rem;
+    }
+
+    /* Sidebar */
+    .uses-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      align-self: flex-start;
+      margin-top: 6rem;
+    }
+    .sidebar-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      background: none;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      background: var(--color-bg-secondary);
+      color: var(--color-text);
+    }
+    .sidebar-link.active {
+      background: rgba(59,130,246,0.1);
+      color: #60a5fa;
+      font-weight: 500;
+    }
+    .sidebar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-border);
+      flex-shrink: 0;
+    }
+    .sidebar-link.active .sidebar-dot {
+      background: #60a5fa;
+    }
+    .sidebar-count {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      margin-left: auto;
+    }
+
+    /* Main */
+    .uses-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Hero */
+    .uses-hero {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .uses-hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .uses-hero-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+    }
+    .uses-hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      display: inline-block;
+    }
+    .uses-hero-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+    .uses-hero-count {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      font-weight: 400;
+    }
+
+    /* Sections */
+    .nav-section {
+      margin-bottom: 3rem;
+      scroll-margin-top: 80px;
+    }
+    .nav-category {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text);
+    }
+    .nav-category-icon {
+      font-size: 1.25rem;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .nav-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem 1.125rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0.625rem;
+      background: var(--color-bg);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(212, 175, 55, 0.02));
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-card:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .nav-card:hover::before {
+      opacity: 1;
+    }
+
+    .nav-card-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.375rem;
+      position: relative;
+    }
+
+    .nav-card-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-text);
+      flex: 1;
+    }
+
+    .nav-card-arrow {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all 0.2s ease;
+    }
+
+    .nav-card:hover .nav-card-arrow {
+      opacity: 1;
+      transform: translateX(0);
+      color: #D4AF37;
+    }
+
+    .nav-card-desc {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+      position: relative;
+    }
+
+    @media (max-width: 900px) {
+      .uses-sidebar { display: none; }
+      .uses-layout { padding: 1.5rem 1rem 3rem; }
+      .nav-grid { grid-template-columns: repeat(2, 1fr); }
+      .uses-hero-title { font-size: 2.5rem; }
+    }
+    @media (max-width: 500px) {
+      .nav-grid { grid-template-columns: 1fr; }
+      .uses-hero-title { font-size: 2rem; }
+    }
+  </style>
+</BaseLayout>
