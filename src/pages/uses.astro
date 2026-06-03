@@ -85,7 +85,7 @@ const totalCats = navData.length;
           <span class="sidebar-dot"></span>
           全部 <span class="sidebar-count">{totalLinks}</span>
         </a>
-        {navData.map(({ category, icon, links }) => (
+        {navData.map(({ category, links }) => (
           <a href={`#${category}`} class="sidebar-link" data-cat-link={category}>
             <span class="sidebar-dot"></span>
             {category} <span class="sidebar-count">{links.length}</span>

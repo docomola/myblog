@@ -24,7 +24,7 @@ const { album } = Astro.props;
 const { Content } = await render(album);
 
 // Build gradient style from index
-const idx = parseInt(album.data.order) || 1;
+const idx = parseInt(String(album.data.order)) || 1;
 const gradientAngle = 135 + idx * 40;
 const gradientHue1 = idx * 55 + 200;
 const gradientHue2 = idx * 55 + 280;

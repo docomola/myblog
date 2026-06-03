@@ -154,7 +154,7 @@ const galleryPreview = allAlbums
         <ForwardLink href="/blog" text="查看全部" variant="muted" />
       </div>
       <div class="posts-grid">
-        {recentPostList.map((post, i) => {
+        {recentPostList.map((post) => {
           const date = new Date(post.data.publishDate);
           const formattedDate = date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
           return (

@@ -179,7 +179,7 @@ const pageTitle = `博客 - ${filterLabel}`;
       <!-- 分类筛选 -->
       <nav class="blog-categories">
         <a href="/blog" class={`cat-item ${filterLabel === '全部' ? 'cat-active' : ''}`}>全部</a>
-        {categories.map(([name, count]) => (
+        {categories.map(([name]) => (
           <a href={`/blog/${name}`} class={`cat-item ${filterLabel === name ? 'cat-active' : ''}`}>{name}</a>
         ))}
       </nav>

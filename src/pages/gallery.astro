@@ -78,24 +78,25 @@ const categories = ['全部', ...new Set(galleryItems.map(item => item.data.cate
     const tabs = document.querySelectorAll('.filter-tab');
     const cards = document.querySelectorAll('.project-card');
 
-    function filterBy(category) {
+    function filterBy(category: string) {
       tabs.forEach(t => t.classList.remove('active'));
       const matchTab = [...tabs].find(t => t.getAttribute('data-category') === category) || tabs[0];
       matchTab.classList.add('active');
 
       cards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
+        const el = card as HTMLElement;
+        const cardCategory = el.getAttribute('data-category');
         if (category === 'all' || cardCategory === category) {
-          card.style.display = '';
+          el.style.display = '';
         } else {
-          card.style.display = 'none';
+          el.style.display = 'none';
         }
       });
     }
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        filterBy(tab.getAttribute('data-category'));
+        filterBy(tab.getAttribute('data-category') ?? 'all');
       });
     });
 
