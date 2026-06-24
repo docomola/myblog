@@ -1,0 +1,231 @@
+/* Hero234 Wide — Double-Row Horizontal Filmstrip */
+.film-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ===== WRAPPER — pack rows tightly ===== */
+.film-strips {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* ===== FILMSTRIP ROWS ===== */
+.film-row {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.film-row--top {
+  margin-left: -200px;
+  animation: scrollLeft 70s linear infinite;
+}
+
+.film-row--bottom {
+  margin-left: -200px;
+  animation: scrollRight 70s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.film-row:hover {
+  animation-play-state: paused;
+}
+
+/* ===== FILM TILES - LARGE SIZE ===== */
+.film-tile {
+  flex-shrink: 0;
+  width: 440px;
+  height: 300px;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  isolation: isolate;
+}
+
+.film-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.film-tile:hover::after {
+  opacity: 1;
+}
+
+.film-tile:hover {
+  transform: translateY(-8px);
+  z-index: 10;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.film-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.5s ease;
+  filter: grayscale(20%) brightness(0.85);
+}
+
+.film-tile:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0%) brightness(1);
+}
+
+/* ===== EDGE GRADIENT VEILS ===== */
+.film-veil-left,
+.film-veil-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.film-veil-left {
+  left: 0;
+  background: linear-gradient(to right, #000 0%, transparent 100%);
+}
+
+.film-veil-right {
+  right: 0;
+  background: linear-gradient(to left, #000 0%, transparent 100%);
+}
+
+/* ===== CENTER GLASS CARD ===== */
+.film-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  padding: 3rem 3.5rem;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px) saturate(1);
+  -webkit-backdrop-filter: blur(10px) saturate(1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.5rem;
+  max-width: 400px;
+  width: 85%;
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+/* micro-border glow ring */
+.film-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.film-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 2rem;
+  text-shadow: 0 0 60px rgba(212, 175, 55, 0.1);
+}
+
+.film-title span {
+  display: block;
+  color: rgba(212, 175, 55, 0.8);
+}
+
+.film-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.625rem;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.film-btn:hover {
+  background: rgba(212, 175, 55, 0.3);
+  color: #000;
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .film-tile {
+    width: 320px;
+    height: 220px;
+  }
+  .film-strips { height: 60vh; }
+}
+
+@media (max-width: 768px) {
+  .film-tile {
+    width: 220px;
+    height: 150px;
+    border-radius: 0.625rem;
+  }
+  .film-row { gap: 0.75rem; }
+  .film-strips { height: 50vh; gap: 0.5rem; }
+  .film-card {
+    padding: 2rem 1.75rem;
+    border-radius: 1rem;
+    max-width: 320px;
+  }
+  .film-veil-left,
+  .film-veil-right { width: 10%; }
+}

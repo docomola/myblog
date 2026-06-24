@@ -6,3 +6,12 @@
   font-display: swap;
   src: url('/fonts/qwigley-400.woff2') format('woff2');
 }
+
+/* Self-hosted Bodoni Moda SC — display serif for hero headlines */
+@font-face {
+  font-family: 'Bodoni Moda SC';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/bodoni-moda-sc-400-900.woff2') format('woff2');
+}

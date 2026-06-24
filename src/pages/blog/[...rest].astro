@@ -204,8 +204,8 @@ const pageTitle = `博客 - ${filterLabel}`;
     </main>
   </div>
 
-  <style>
-    .blog-layout { display: flex; max-width: 1400px; margin: 0 auto; padding: 2rem 3rem 4rem 10rem; gap: 3rem; }
+  <style is:global>
+    .blog-layout { position: relative; z-index: 1; display: flex; max-width: 1400px; margin: 0 auto; padding: 2rem 3rem 4rem 10rem; gap: 3rem; }
     .blog-timeline { width: 220px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; margin-top: 6rem; }
     .timeline-title { font-family: 'Unbounded', sans-serif; font-size: 1.125rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-text); margin-bottom: 1.5rem; }
     .timeline-list { display: flex; flex-direction: column; gap: 0.75rem; }
@@ -235,10 +235,17 @@ const pageTitle = `博客 - ${filterLabel}`;
     .blog-hero-count { font-size: 0.875rem; color: var(--color-text-muted); font-weight: 400; }
 
     .blog-categories { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-border); }
-    .cat-item { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.5rem 1.25rem; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; border: 1px solid var(--color-border); color: var(--color-text-secondary); background: none; cursor: pointer; text-decoration: none; transition: all 0.2s ease; }
-    .cat-item:hover { border-color: var(--color-text-muted); color: var(--color-text); background: var(--color-bg-secondary); }
-    .cat-active { background: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+    .cat-item { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.5rem 1.25rem; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.55); background: transparent; cursor: pointer; text-decoration: none; transition: all 0.2s ease; }
+    .cat-item:hover { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.05); }
+    .cat-active { background: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.9); color: #121212; font-weight: 600; }
     .blog-card-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 760px; }
+    .blog-card-list .base-card { opacity: 0.85; }
+    .blog-card-list .base-card:nth-child(1)::after { animation-delay: 0s; }
+    .blog-card-list .base-card:nth-child(2)::after { animation-delay: 1s; }
+    .blog-card-list .base-card:nth-child(3)::after { animation-delay: 2s; }
+    .blog-card-list .base-card:nth-child(4)::after { animation-delay: 3s; }
+    .blog-card-list .base-card:nth-child(5)::after { animation-delay: 4s; }
+    .blog-card-list .base-card:nth-child(n+6)::after { animation-delay: 5s; }
     @media (max-width: 900px) { .blog-timeline { display: none; } .blog-layout { padding: 1.5rem 1rem 3rem; } .blog-hero-title { font-size: 2.5rem; } }
     @media (max-width: 600px) { .blog-hero-title { font-size: 2rem; } }
   </style>
@@ -252,5 +259,6 @@ const pageTitle = `博客 - ${filterLabel}`;
         btn.setAttribute('aria-expanded', !yearEl.classList.contains('collapsed'));
       });
     });
+
   </script>
 </BaseLayout>

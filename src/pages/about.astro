@@ -45,7 +45,58 @@ const stats = [
       <div class="about-info">
         <section class="about-section">
           <h2 class="section-label">Bio</h2>
-          <p class="about-bio">{siteConfig.author.bio}</p>
+          <p class="about-bio">
+            我是 Verlin，一个对设计、技术与商业交叉地带充满好奇的创造者。
+          </p>
+          <p class="about-bio">
+            我相信好的作品来自跨领域的碰撞 — 用快速原型将想法变成现实，用设计思维打磨每一个细节，用商业直觉判断什么值得投入。AI 是我最常用的协作伙伴，它让我的创造力不再受限于技术栈的边界。
+          </p>
+          <p class="about-bio">
+            这个博客是我的思考空间：记录技术实践、设计复盘、商业观察，以及那些在深夜突然冒出来的念头。我写东西不只是为了分享，更是为了让未来的自己能看懂过去的思考脉络。
+          </p>
+        </section>
+
+        <section class="about-section">
+          <h2 class="section-label">Interests</h2>
+          <div class="interest-tags">
+            <span class="interest-tag">Design</span>
+            <span class="interest-tag">AI</span>
+            <span class="interest-tag">商业观察</span>
+            <span class="interest-tag">财经</span>
+            <span class="interest-tag">科技</span>
+            <span class="interest-tag">影视叙事</span>
+            <span class="interest-tag">产品思维</span>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2 class="section-label">Currently</h2>
+          <div class="currently-list">
+            <div class="currently-item">
+              <span class="currently-key">探索</span>
+              <span class="currently-val">AI 辅助开发的边界在哪里，个人创作者如何借助工具放大创造力</span>
+            </div>
+            <div class="currently-item">
+              <span class="currently-key">阅读</span>
+              <span class="currently-val">设计系统、行为经济学、叙事结构相关的书籍和文章</span>
+            </div>
+            <div class="currently-item">
+              <span class="currently-key">构建</span>
+              <span class="currently-val">用 Astro 打造的个人博客，持续迭代中</span>
+            </div>
+            <div class="currently-item">
+              <span class="currently-key">思考</span>
+              <span class="currently-val">技术浪潮中，个人创作者如何找到自己的位置</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2 class="section-label">Philosophy</h2>
+          <blockquote class="about-quote">
+            记录不是为了展示，而是为了让思考可见。<br/>
+            当想法被写下来的那一刻，它才真正开始生长。
+          </blockquote>
         </section>
 
         {siteConfig.author.location && (
@@ -187,6 +238,62 @@ const stats = [
     }
     .about-email:hover {
       text-decoration: underline;
+    }
+
+    /* Interest tags */
+    .interest-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .interest-tag {
+      display: inline-block;
+      padding: 0.3rem 0.875rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border-radius: 2rem;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      color: var(--color-text-secondary);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .interest-tag:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: rgba(212, 175, 55, 0.35);
+    }
+
+    /* Currently */
+    .currently-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .currently-item {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+    }
+    .currently-key {
+      flex-shrink: 0;
+      font-weight: 600;
+      color: #D4AF37;
+      min-width: 2.5rem;
+    }
+    .currently-val {
+      color: var(--color-text-secondary);
+    }
+
+    /* Philosophy quote */
+    .about-quote {
+      font-size: 1rem;
+      line-height: 1.8;
+      font-style: italic;
+      color: var(--color-text-secondary);
+      border-left: 3px solid #D4AF37;
+      padding: 0.75rem 1.25rem;
+      margin: 0;
     }
 
     /* Right stats */

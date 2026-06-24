@@ -614,20 +614,6 @@ const recentPostList = sortedPosts.slice(0, 10);
       opacity: 0.4;
     }
 
-    /* Light mode: white overlay */
-    :global([data-theme="light"]) .gallery-card-overlay {
-      background: linear-gradient(to top, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 100%);
-    }
-
-    :global([data-theme="light"]) .gallery-card-title {
-      color: #1a1a1a;
-      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
-    }
-
-    :global([data-theme="light"]) .gallery-card:hover .gallery-card-img {
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-    }
-
     @media (max-width: 640px) {
       .gallery-grid-preview {
         grid-template-columns: repeat(2, 1fr);

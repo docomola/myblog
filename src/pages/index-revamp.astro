@@ -1,0 +1,1493 @@
+---
+/**
+ * Home Page
+ * 
+ * Case-study-first portfolio homepage that immediately showcases real impact and outcomes
+ * rather than generic taglines. Features a hero section with featured project snapshots,
+ * recent decisions, testimonials, and clear calls-to-action.
+ * 
+ * Design Philosophy:
+ * - Lead with tangible results and case studies
+ * - Document decision-making process transparently
+ * - Demonstrate value through real project outcomes
+ * - Provide multiple entry points (projects, decisions, journey)
+ * 
+ * Sections:
+ * 1. Hero - Value statement with featured case study snapshots
+ * 2. Introduction - Brief personal introduction with journey link
+ * 3. Recent Decisions - Latest architectural/technical decisions
+ * 4. Testimonials - Social proof from colleagues and clients
+ * 5. Thinking - Problems and topics of interest
+ * 6. CTA - Call-to-action for work opportunities
+ * 
+ * Route: /
+ * 
+ * @page
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import StructuredData from '../components/StructuredData.astro';
+import ForwardLink from '../components/ForwardLink.astro';
+import SocialIcons from '../components/SocialIcons.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../config';
+import '../styles/film-hero.css';
+
+/**
+ * Queries latest blog posts for the hero section
+ */
+const allPosts = await getCollection('writing', ({ data }) => !data.draft);
+const sortedPosts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const latestFourPosts = sortedPosts.slice(0, 4);
+
+// Gallery albums (only featured, first 6 for preview)
+const allAlbums = await getCollection('gallery', ({ data }) => !data.draft);
+const galleryPreview = allAlbums
+  .filter(a => a.data.featured)
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .slice(0, 6);
+---
+
+<BaseLayout>
+  <SEO 
+    slot="head"
+    title="Verlin--BLOG日常分享思考"
+    description={siteConfig.description}
+    type="website"
+    noSuffix
+  />
+
+  <!-- Structured Data for Homepage -->
+  <StructuredData type="WebSite" />
+  <StructuredData type="Person" />
+
+  <main class="home-page">
+    <!-- HERO CARD (erudite-style) -->
+    <section class="hero-card">
+      <div class="hero-card-bends" id="hero-bends-bg"></div>
+      <div class="hero-card-inner">
+        <div class="hero-card-left">
+          <h1 class="hero-card-title">
+            <div class="hero-card-line1">闲笔漫谈</div>
+            <div class="hero-card-line2">Verlin&rsquo;s Blog</div>
+          </h1>
+          <p class="hero-card-desc">
+            这里是 Verlin 的线上空间。关于设计、AI、商业与影像的思考，都会在这里留下痕迹。
+          </p>
+          <div class="hero-card-actions">
+            <span class="glow-btn-wrap">
+              <a href="/blog" class="hero-card-btn-primary glow-btn">探索作品</a>
+            </span>
+          </div>
+          <SocialIcons />
+        </div>
+        <div class="hero-card-right">
+          <div class="hero-avatar">
+            <img src="/avatar.png" alt="Verlin" class="hero-avatar-img avatar-dark" />
+            <img src="/avatar-light.png" alt="Verlin" class="hero-avatar-img avatar-light" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Cards -->
+    <section class="axis-services">
+      <div class="axis-services-bg">
+        <div class="axis-services-portrait"></div>
+        <div class="axis-services-glitch"></div>
+        <div class="axis-services-gradient"></div>
+      </div>
+      <div class="axis-services-content">
+        <div class="axis-services-header">
+          <h2 class="axis-services-title">
+            最新文章
+            <span style="display:block;font-size:0.5em;font-weight:400;color:rgba(255,255,255,0.3);text-transform:none;letter-spacing:0">Recent Writing</span>
+          </h2>
+          <a href="/blog" class="services-all">查看全部 →</a>
+        </div>
+        <div class="axis-services-grid">
+          {latestFourPosts.map((post, i) => (
+            <a href={`/blog/${post.id}`} class="axis-service-card">
+              <div class="axis-service-card-inner">
+                <span class="axis-service-num">{String(i + 1).padStart(2, '0')}</span>
+                <h3 class="axis-service-title">{post.data.title}</h3>
+                <p class="axis-service-desc">{post.data.description}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Logo 走马灯 -->
+    <section class="brand-wall">
+      <div class="brand-wall-header">
+        <span class="brand-wall-label">TOOLS & SKILLS</span>
+        <h2 class="brand-wall-title">日常使用的工具与技术</h2>
+      </div>
+      <div class="brand-marquee" id="logo-loop" role="region" aria-label="技术合作伙伴">
+        <div class="brand-marquee__track">
+          {['astro', 'google', 'vercel', 'cloudflare', 'github', 'claude', 'codeium', 'workbuddy', 'gemini', 'vite', 'react', 'typescript', 'tailwind', 'figma', 'nodejs', 'nextjs'].map((slug) => (
+            <div class="brand-marquee__item">
+              <img src={'/brand-logos/' + slug + '.svg'} alt={slug} />
+              <img src={'/brand-logos/' + slug + '.svg'} alt={slug} aria-hidden="true" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 探索领域 / Services -->
+    <section class="services">
+      <div class="services-header">
+        <div class="services-header-text">
+          <span class="services-label">EXPLORING</span>
+          <h2 class="services-title">探索领域<span style="display:block;font-size:0.5em;font-weight:400;color:rgba(255,255,255,0.3);text-transform:none;letter-spacing:0">Explore</span></h2>
+        </div>
+        <a href="/blog" class="services-all">查看全部 →</a>
+      </div>
+      <div class="services-grid">
+        <a href="/blog/前端" class="service-card">
+          <div class="service-num-row">
+            <span class="service-num">01</span>
+            <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </div>
+          <span class="service-cat">设计</span>
+          <h3 class="service-name">设计思考</h3>
+          <span class="service-sub">Design Thinking</span>
+          <p class="service-desc">从用户视角出发，探索设计与技术的融合之道</p>
+        </a>
+        <a href="/blog/后端" class="service-card">
+          <div class="service-num-row">
+            <span class="service-num">02</span>
+            <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </div>
+          <span class="service-cat">技术</span>
+          <h3 class="service-name">AI与技术</h3>
+          <span class="service-sub">AI &amp; Tech</span>
+          <p class="service-desc">人工智能如何重塑创造的方式</p>
+        </a>
+        <a href="/blog/工程实践" class="service-card">
+          <div class="service-num-row">
+            <span class="service-num">03</span>
+            <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </div>
+          <span class="service-cat">商业</span>
+          <h3 class="service-name">商业观察</h3>
+          <span class="service-sub">Business Insights</span>
+          <p class="service-desc">商业模式如何决定技术选型</p>
+        </a>
+        <a href="/gallery" class="service-card">
+          <div class="service-num-row">
+            <span class="service-num">04</span>
+            <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </div>
+          <span class="service-cat">视觉</span>
+          <h3 class="service-name">影像叙事</h3>
+          <span class="service-sub">Visual Storytelling</span>
+          <p class="service-desc">一个镜头的叙事为何比千言万语更有力</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- 简介 -->
+    <section class="introduction">
+      <span class="intro-label">Who I Am</span>
+      <h2 class="intro-headline">
+        Where Design Meets<br/><span class="intro-headline-gold">Technology & Ideas</span>
+      </h2>
+      <p class="intro-sub">
+        喜欢把复杂的问题想清楚，再用简单的语言讲出来。设计、技术、商业、叙事 — 都是理解世界的透镜。
+      </p>
+      <span class="glow-btn-wrap">
+        <a href="/journey" class="intro-btn glow-btn">关于我 →</a>
+      </span>
+    </section>
+
+    <!-- 胶卷相册 -->
+    <div class="film-hero">
+      <div class="film-strips">
+        <div class="film-row film-row--top">
+          {[...galleryPreview, ...galleryPreview].map((item, i) => (
+            <a href={'/gallery/' + item.id} class="film-tile">
+              {item.data.cover ? (
+                <img src={item.data.cover} alt={item.data.title} loading="lazy" />
+              ) : (
+                <div class="film-tile-placeholder">
+                  <span>{item.data.letter}</span>
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+        <div class="film-row film-row--bottom">
+          {[...galleryPreview, ...galleryPreview].map((item, i) => (
+            <a href={'/gallery/' + item.id} class="film-tile">
+              {item.data.cover ? (
+                <img src={item.data.cover} alt={item.data.title} loading="lazy" />
+              ) : (
+                <div class="film-tile-placeholder">
+                  <span>{item.data.letter}</span>
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="film-veil-left"></div>
+      <div class="film-veil-right"></div>
+    </div>
+
+    <!-- 底部 CTA -->
+    <section class="hero-block">
+      <div class="hero-block-bg"></div>
+      <div class="hero-block-content">
+        <a href="/blog" class="hero-block-pill">
+          探索最新的思考与创作 <span class="hero-block-pill-arrow">→</span>
+        </a>
+        <h2 class="hero-block-title">
+          让每一个想法留下痕迹<br/>
+          <span class="hero-block-accent">让每一次创造找到归处</span>
+        </h2>
+        <p class="hero-block-desc">
+          设计决策不会孤立发生。在这里，记录设计、AI、商业与叙事的交汇，构建属于自己的思考体系。
+        </p>
+        <span class="hero-block-btn-wrap">
+          <a href="/blog" class="hero-block-btn">开始阅读</a>
+        </span>
+      </div>
+    </section>
+
+  </main>
+
+  <style>
+    .home-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 8rem;
+    }
+
+    /* ============================================
+       HERO CARD (erudite-style, top of page)
+       ============================================ */
+    .hero-card {
+      position: relative;
+      margin: 0;
+      padding: 3rem 0;
+      border: none;
+      border-radius: 0;
+      background: 
+        radial-gradient(ellipse 60% 80% at 30% 20%, rgba(212,175,55,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 70% 80%, rgba(180,140,35,0.03) 0%, transparent 70%),
+        repeating-linear-gradient(
+          28deg,
+          rgba(255,255,255,0.02) 0px,
+          rgba(255,255,255,0.02) 1px,
+          transparent 1px,
+          transparent 14px
+        ),
+        repeating-linear-gradient(
+          -32deg,
+          rgba(255,255,255,0.012) 0px,
+          rgba(255,255,255,0.012) 1px,
+          transparent 1px,
+          transparent 22px
+        ),
+        #0C0C0C;
+      box-shadow: none;
+      min-height: calc(100vh - 100px);
+      display: flex;
+      align-items: center;
+      width: 100vw;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-card-bends {
+      position: absolute;
+      top: -88px;
+      left: 0;
+      width: 100%;
+      height: calc(100% + 88px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: auto;
+    }
+
+    .hero-card-left {
+      flex: 2;
+      min-width: 0;
+    }
+
+    .hero-card-right {
+      flex: 1;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-avatar {
+      width: 360px;
+      height: auto;
+      margin-top: -2rem;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.25)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.12));
+      transition: filter 0.3s ease;
+    }
+
+    .hero-avatar:hover {
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.3));
+    }
+
+    .hero-avatar-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar-light { display: none; }
+
+    .hero-avatar:hover .hero-avatar-img {
+      transform: scale(1.05);
+    }
+
+    .hero-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .hero-card-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-card-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 2.25rem;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+
+    .hero-card-line1 {
+      color: #ffffff;
+      font-family: 'CangJiGaoDeGuoMiaoHei', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: none;
+    }
+
+    .hero-card-line2 {
+      background: linear-gradient(135deg, #FFF0B0 0%, #D4AF37 70%, #BF9B30 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-card-desc {
+      font-size: 1rem;
+      line-height: 1.625;
+      color: var(--color-text);
+      max-width: 36rem;
+    }
+
+    .hero-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-card-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.5rem;
+      background: var(--color-accent);
+      color: var(--color-bg);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .hero-card-btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .hero-card-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.5rem;
+      background: transparent;
+      color: var(--color-text);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+      border-radius: 0.5rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-card-btn-secondary:hover {
+      border-color: var(--color-text-muted);
+      background: var(--color-bg-elevated);
+    }
+
+    @media (min-width: 640px) {
+      .hero-card {
+        padding: 2.5rem;
+      }
+
+      .hero-card-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-card {
+        padding: 3rem;
+      }
+
+      .hero-card-title {
+        font-size: 3.75rem;
+      }
+
+      .hero-card-desc {
+        font-size: 1.125rem;
+      }
+    }
+
+    /* ============================================
+       AXIS SERVICE CARDS (axisform-inspired 2x2 grid)
+       ============================================ */
+    .axis-services {
+      position: relative;
+      margin-bottom: 2rem;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      min-height: 800px;
+      isolation: isolate;
+    }
+
+    .axis-services-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .axis-services-portrait {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(to bottom, rgba(10,10,10,0.1) 0%, transparent 40%, transparent 80%, rgba(10,10,10,0.1) 100%);
+    }
+
+    .axis-services-glitch {
+      display: none;
+    }
+
+    .axis-services-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 50%, rgba(180, 140, 35, 0.04) 0%, transparent 70%);
+    }
+
+    @keyframes glowBreathe {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .axis-services-content {
+      position: relative;
+      z-index: 1;
+      padding: 4rem 3rem 3rem;
+    }
+
+    .axis-services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      gap: 1rem;
+    }
+
+    .axis-services-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      margin: 0;
+    }
+
+    .axis-services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .axis-service-card {
+      background: rgba(24, 22, 20, 0.75);
+      border: 1px solid rgba(255, 248, 235, 0.07);
+      border-radius: 1rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, opacity 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      opacity: 0.85;
+    }
+
+    .axis-service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 100% 60% at 50% 100%, rgba(210, 170, 50, 0.22) 0%, rgba(200, 155, 40, 0.08) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform-origin: bottom center;
+      animation: glowBreathe 5s ease-in-out infinite;
+    }
+    .axis-service-card:nth-child(1)::after { animation-delay: 0s; }
+    .axis-service-card:nth-child(2)::after { animation-delay: 1.2s; }
+    .axis-service-card:nth-child(3)::after { animation-delay: 2.4s; }
+    .axis-service-card:nth-child(4)::after { animation-delay: 3.6s; }
+
+    .axis-service-card:hover {
+      border-color: rgba(255, 248, 235, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(210, 170, 50, 0.08);
+      opacity: 1;
+    }
+
+    .axis-service-card-inner {
+      position: relative;
+      z-index: 1;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .axis-service-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(201, 168, 76, 0.6);
+    }
+
+    .axis-service-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .axis-service-desc {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .axis-services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .axis-services-content {
+        padding: 2.5rem 1.5rem 2rem;
+      }
+
+      .axis-service-card-inner {
+        padding: 2rem 1.5rem;
+      }
+
+      .axis-services-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* ============================================
+       SERVICES / 探索领域 (cards module)
+       ============================================ */
+    .services {
+      margin-bottom: 5rem;
+    }
+
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      gap: 1rem;
+      padding-left: 3rem;
+    }
+
+    .services-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .services-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .services-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      margin: 0 0 3.5rem;
+    }
+
+    .services-all {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 2rem;
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+      margin-top: 0.375rem;
+    }
+
+    .services-all:hover {
+      border-color: var(--color-text-muted);
+      color: var(--color-text);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .service-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding: 2rem 1.5rem 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 248, 235, 0.07);
+      background: rgba(24, 22, 20, 0.75);
+      text-decoration: none;
+      color: inherit;
+      text-align: left;
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+      min-height: 280px;
+      overflow: hidden;
+      opacity: 0.85;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 100% 60% at 50% 100%, rgba(210, 170, 50, 0.25) 0%, rgba(200, 155, 40, 0.1) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform-origin: bottom center;
+      animation: glowBreathe 5s ease-in-out infinite;
+    }
+    .service-card:nth-child(1)::after { animation-delay: 0s; }
+    .service-card:nth-child(2)::after { animation-delay: 1.2s; }
+    .service-card:nth-child(3)::after { animation-delay: 2.4s; }
+    .service-card:nth-child(4)::after { animation-delay: 3.6s; }
+    .service-card:hover {
+      border-color: rgba(255, 248, 235, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(210, 170, 50, 0.08);
+      opacity: 1;
+    }
+
+    /* X-module style: big number */
+    .service-num-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .service-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #c9a84c;
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+    }
+    .service-arrow {
+      color: rgba(201,168,76,0.4);
+      flex-shrink: 0;
+      margin-bottom: 0.5rem;
+    }
+    .service-cat {
+      font-size: 0.575rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      background: rgba(201,168,76,0.12);
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.2rem;
+      align-self: flex-start;
+    }
+    .service-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      margin: 0;
+    }
+    .service-sub {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 0.25rem;
+    }
+    .service-desc {
+      font-size: 0.75rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.4);
+      margin: 0;
+      flex: 1;
+    }
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .service-card {
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       INTRODUCTION
+       ============================================ */
+    .introduction {
+      margin: 0 auto 5rem;
+      text-align: center;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+      position: relative;
+      overflow: hidden;
+      padding: 2rem 0;
+    }
+
+    .intro-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-headline {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--color-text);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .intro-headline-gold {
+      background: linear-gradient(135deg, #FFF0B0 0%, #D4AF37 70%, #BF9B30 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .intro-sub {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.625rem 1.5rem;
+      background: var(--color-text);
+      color: var(--color-bg);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    /* ============================================
+       GALLERY TITLE — separate section above filmstrip
+       ============================================ */
+    .gallery-title-section {
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      background: #000;
+      padding-bottom: 1rem;
+    }
+
+    .gallery-title-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 2.5rem 3rem;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-title-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .film-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(212,175,55,0.6);
+    }
+    .film-heading {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .film-heading span {
+      font-size: 0.6em;
+      font-weight: 400;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================
+       FILMSTRIP — placeholder tile for items without cover
+       ============================================ */
+    .film-tile-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, hsl(200, 55%, 30%), hsl(280, 50%, 20%));
+    }
+
+    .film-tile-placeholder span {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.18);
+      user-select: none;
+    }
+
+    /* ============================================
+       BRAND MARQUEE (pure CSS infinite scroll)
+       ============================================ */
+    .brand-wall {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .brand-wall-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .brand-wall-label {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-wall-title {
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* --- Brand Marquee (pure CSS infinite scroll) --- */
+    .brand-marquee {
+      --bm-gap: 60px;
+      --bm-height: 40px;
+      --bm-speed: 40s;
+      overflow: hidden;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+      );
+    }
+
+    .brand-marquee__track {
+      display: flex;
+      align-items: center;
+      gap: var(--bm-gap);
+      width: max-content;
+      animation: brand-scroll var(--bm-speed) linear infinite;
+    }
+
+    .brand-marquee:hover .brand-marquee__track {
+      animation-play-state: paused;
+    }
+
+    @keyframes brand-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .brand-marquee__item {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: var(--bm-gap);
+    }
+
+    .brand-marquee__item img {
+      height: var(--bm-height);
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: invert(1);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .brand-marquee:hover .brand-marquee__item img {
+      opacity: 0.75;
+    }
+
+    @media (max-width: 640px) {
+      .brand-marquee {
+        --bm-gap: 36px;
+        --bm-height: 30px;
+        --bm-speed: 28s;
+        height: 70px;
+      }
+    }
+
+    /* ============================================
+       HERO BLOCK (full-width cinematic hero)
+       ============================================ */
+    .hero-block {
+      position: relative;
+      margin-bottom: 5rem;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-block-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(180, 120, 40, 0.15) 0%, transparent 70%),
+        linear-gradient(to top, rgba(180, 120, 40, 0.08) 0%, transparent 50%),
+        var(--color-bg);
+      z-index: 0;
+    }
+
+    .hero-block-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero-block-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 2rem;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .hero-block-pill:hover {
+      border-color: var(--color-text-muted);
+      color: var(--color-text);
+    }
+
+    .hero-block-pill-arrow {
+      color: var(--color-accent, #D4AF37);
+      font-weight: 600;
+    }
+
+    .hero-block-title {
+      font-family: 'CangJiGaoDeGuoMiaoHei', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--color-text);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-block-accent {
+      background: linear-gradient(135deg, #FFF0B0 0%, #D4AF37 60%, #BF9B30 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-block-desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+      margin-bottom: 2rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-block-btn-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      overflow: hidden;
+      background: #1a1a1a;
+      transition: box-shadow 0.35s ease;
+      transform: translateZ(0);
+    }
+    .hero-block-btn-wrap:hover {
+      box-shadow:
+        0 0 20px rgba(255, 240, 150, 0.8),
+        0 0 45px rgba(255, 220, 80, 0.5),
+        0 0 90px rgba(212, 175, 55, 0.3);
+    }
+    .hero-block-btn-wrap::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      top: 50%;
+      left: 50%;
+      margin-top: -250px;
+      margin-left: -250px;
+      background: conic-gradient(
+        from 0deg,
+        rgba(212, 175, 55, 0.6) 0deg,
+        rgba(255, 230, 120, 1) 20deg,
+        rgba(255, 255, 200, 1) 40deg,
+        rgba(255, 230, 120, 1) 60deg,
+        rgba(212, 175, 55, 0.6) 80deg,
+        transparent 110deg,
+        transparent 180deg,
+        rgba(212, 175, 55, 0.6) 200deg,
+        rgba(255, 230, 120, 1) 220deg,
+        rgba(255, 255, 200, 1) 240deg,
+        rgba(255, 230, 120, 1) 260deg,
+        rgba(212, 175, 55, 0.6) 280deg,
+        transparent 310deg,
+        transparent 360deg
+      );
+      animation: hero-btn-spin 3s linear infinite;
+      z-index: 0;
+    }
+    .hero-block-btn-wrap:hover::before {
+      background: conic-gradient(
+        from 0deg,
+        rgba(255, 220, 80, 0.8) 0deg,
+        rgba(255, 240, 150, 1) 20deg,
+        rgba(255, 255, 230, 1) 40deg,
+        rgba(255, 240, 150, 1) 60deg,
+        rgba(255, 220, 80, 0.8) 80deg,
+        transparent 110deg,
+        transparent 180deg,
+        rgba(255, 220, 80, 0.8) 200deg,
+        rgba(255, 240, 150, 1) 220deg,
+        rgba(255, 255, 230, 1) 240deg,
+        rgba(255, 240, 150, 1) 260deg,
+        rgba(255, 220, 80, 0.8) 280deg,
+        transparent 310deg,
+        transparent 360deg
+      );
+    }
+    .hero-block-btn {
+      position: relative;
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      margin: 2px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.1) 100%), #1c1c1c;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      text-decoration: none;
+      z-index: 1;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .hero-block-btn:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes hero-btn-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ============================================
+       GLOW BUTTON (reusable flowing light style)
+       ============================================ */
+    .glow-btn-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      overflow: hidden;
+      background: #1a1a1a;
+      transition: box-shadow 0.35s ease;
+      transform: translateZ(0);
+    }
+    .glow-btn-wrap:hover {
+      box-shadow:
+        0 0 20px rgba(255, 240, 150, 0.8),
+        0 0 45px rgba(255, 220, 80, 0.5),
+        0 0 90px rgba(212, 175, 55, 0.3);
+    }
+    .glow-btn-wrap::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      top: 50%;
+      left: 50%;
+      margin-top: -250px;
+      margin-left: -250px;
+      background: conic-gradient(
+        from 0deg,
+        rgba(212, 175, 55, 0.6) 0deg,
+        rgba(255, 230, 120, 1) 20deg,
+        rgba(255, 255, 200, 1) 40deg,
+        rgba(255, 230, 120, 1) 60deg,
+        rgba(212, 175, 55, 0.6) 80deg,
+        transparent 110deg,
+        transparent 180deg,
+        rgba(212, 175, 55, 0.6) 200deg,
+        rgba(255, 230, 120, 1) 220deg,
+        rgba(255, 255, 200, 1) 240deg,
+        rgba(255, 230, 120, 1) 260deg,
+        rgba(212, 175, 55, 0.6) 280deg,
+        transparent 310deg,
+        transparent 360deg
+      );
+      animation: hero-btn-spin 3s linear infinite;
+      z-index: 0;
+    }
+    .glow-btn-wrap:hover::before {
+      background: conic-gradient(
+        from 0deg,
+        rgba(255, 220, 80, 0.8) 0deg,
+        rgba(255, 240, 150, 1) 20deg,
+        rgba(255, 255, 230, 1) 40deg,
+        rgba(255, 240, 150, 1) 60deg,
+        rgba(255, 220, 80, 0.8) 80deg,
+        transparent 110deg,
+        transparent 180deg,
+        rgba(255, 220, 80, 0.8) 200deg,
+        rgba(255, 240, 150, 1) 220deg,
+        rgba(255, 255, 230, 1) 240deg,
+        rgba(255, 240, 150, 1) 260deg,
+        rgba(255, 220, 80, 0.8) 280deg,
+        transparent 310deg,
+        transparent 360deg
+      );
+    }
+    .glow-btn {
+      position: relative !important;
+      display: inline-block !important;
+      padding: 0.75rem 2rem !important;
+      margin: 2px !important;
+      font-size: 0.9375rem !important;
+      font-weight: 600 !important;
+      color: #fff !important;
+      background: linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.1) 100%), #1c1c1c !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 9999px !important;
+      text-decoration: none !important;
+      z-index: 1 !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.15) !important;
+      transition: box-shadow 0.35s ease, border-color 0.35s ease !important;
+      width: auto !important;
+      text-align: center !important;
+    }
+    .glow-btn:hover {
+      border-color: rgba(255, 255, 255, 0.22) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2) !important;
+      opacity: 1 !important;
+    }
+
+    @media (max-width: 768px) {
+      .hero-block {
+        min-height: 340px;
+      }
+
+      .hero-block-content {
+        padding: 3rem 1.5rem;
+      }
+
+      .hero-block-title {
+        font-size: 1.5rem;
+      }
+
+      .hero-block-desc {
+        font-size: 0.9375rem;
+      }
+    }
+
+    /* ============================================
+       SECTION DECO (large English text decoration)
+       ============================================ */
+    .section-deco {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 7rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.05);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    /* ============================================
+       RESPONSIVE (mobile)
+       ============================================ */
+    @media (max-width: 768px) {
+      .home-page {
+        padding: 0 1rem 3rem;
+      }
+
+      .hero-card {
+        margin: 1.5rem 0 1.5rem;
+        padding: 1.5rem;
+      }
+
+      .hero-card-inner {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .hero-card-right {
+        display: none;
+      }
+
+      .hero-card-title {
+        font-size: 2rem;
+      }
+
+      .hero-card-btn-primary,
+      .hero-card-btn-secondary {
+        width: auto;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+      }
+
+      .hero-card-actions {
+        justify-content: center;
+      }
+
+      .introduction {
+        font-size: 1rem;
+      }
+
+      .intro-headline {
+        font-size: 2.25rem;
+      }
+
+      .intro-sub {
+        font-size: 0.9375rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .services-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .glow-btn-wrap {
+        width: auto;
+      }
+
+      .glow-btn {
+        width: auto !important;
+        padding: 0.5rem 1.25rem !important;
+        font-size: 0.8125rem !important;
+      }
+
+      .section-deco {
+        font-size: 4rem;
+      }
+    }
+
+  </style>
+
+  <script>
+    import { initColorBends, destroyColorBends } from '../scripts/color-bends.js';
+
+    initColorBends();
+
+    document.addEventListener('astro:before-swap', destroyColorBends);
+    document.addEventListener('astro:after-swap', initColorBends);
+  </script>
+
+</BaseLayout>

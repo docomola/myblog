@@ -93,11 +93,11 @@
   if (!document.documentElement.dataset.themeToggleInit) {
     document.documentElement.dataset.themeToggleInit = 'true';
 
-    // Get theme from storage or system preference
+    // Get theme from storage, default to dark
     const getTheme = (): 'light' | 'dark' => {
       const stored = localStorage.getItem('theme');
       if (stored === 'light' || stored === 'dark') return stored;
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      return 'dark';
     };
 
     // Apply theme to document

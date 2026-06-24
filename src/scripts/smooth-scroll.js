@@ -4,15 +4,15 @@ let lenis = null;
 let rafId = null;
 
 function startLenis() {
-  // Don't start if already running
   if (lenis) return;
 
   lenis = new Lenis({
-    duration: 3.105,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    duration: 1.8,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)),
     smoothWheel: true,
-    wheelMultiplier: 0.51,
-    touchMultiplier: 1.5,
+    wheelMultiplier: 1.0,
+    touchMultiplier: 2,
+    smoothTouch: true,
   });
 
   function raf(time) {
@@ -34,9 +34,7 @@ function stopLenis() {
   }
 }
 
-// Start on initial load
 startLenis();
 
-// Astro View Transitions: destroy before swap, re-create after swap
 document.addEventListener('astro:before-swap', stopLenis);
 document.addEventListener('astro:after-swap', startLenis);

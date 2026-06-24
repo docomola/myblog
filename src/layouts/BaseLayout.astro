@@ -46,6 +46,7 @@ import { siteConfig } from '../config';
 import '../styles/global.css';
 import '../styles/typography.css';
 import '../styles/utilities.css';
+import '../styles/fonts.css';
 ---
 
 <!DOCTYPE html>
@@ -73,26 +74,8 @@ import '../styles/utilities.css';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet" />
     <meta name="theme-color" content="#1c1c1c" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     
     <ClientRouter />
-    
-    <!-- Prevent flash of wrong theme -->
-    <script is:inline>
-      (function() {
-        const stored = localStorage.getItem('theme');
-        const theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
-    
-    <!-- Preserve theme during View Transitions -->
-    <script is:inline>
-      document.addEventListener('astro:before-swap', (e) => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        e.newDocument.documentElement.setAttribute('data-theme', theme);
-      });
-    </script>
     
     <style>
       body {
@@ -110,12 +93,8 @@ import '../styles/utilities.css';
         top: 0;
         z-index: 100;
       }
+
     </style>
-    
-    <!-- Lenis smooth scroll (npm version, with reduced-motion & View Transition support) -->
-    <script>
-      import '../scripts/smooth-scroll.js';
-    </script>
   </head>
   <body>
     <header class="site-header" transition:persist>
@@ -125,5 +104,8 @@ import '../styles/utilities.css';
       <slot />
     </main>
     <Footer />
+    <script>
+      import '../scripts/smooth-scroll.js';
+    </script>
   </body>
 </html>

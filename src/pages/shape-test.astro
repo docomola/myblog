@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ShapeBlur from '../components/ShapeBlur';
+---
+
+<BaseLayout>
+  <main style="max-width:1100px;margin:0 auto;padding:2rem 1.5rem 6rem">
+    <h1 style="font-family:Unbounded,sans-serif;font-size:2rem;color:rgba(255,255,255,0.9);margin-bottom:0.5rem">ShapeBlur Test</h1>
+    <p style="color:rgba(255,255,255,0.45);margin-bottom:3rem">鼠标在卡片上移动查看效果 — 纯 Three.js shader</p>
+
+    <!-- 2x2 网格 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:3rem">
+      <div style="position:relative;background:rgba(24,22,20,0.75);border:1px solid rgba(255,248,235,0.07);border-radius:1rem;overflow:hidden;min-height:280px">
+        <ShapeBlur client:load variation={0} shapeSize={0.5} borderSize={0.04} circleSize={0.35} />
+        <div style="position:relative;z-index:20;padding:2.5rem 2rem">
+          <span style="font-size:0.75rem;color:rgba(201,168,76,0.6)">01</span>
+          <h3 style="color:rgba(255,255,255,0.88);margin:1rem 0 0.5rem">Variation 0 — Rounded Rect</h3>
+          <p style="color:rgba(255,255,255,0.4);font-size:0.875rem">矩形边框 + 鼠标光斑</p>
+        </div>
+      </div>
+      <div style="position:relative;background:rgba(24,22,20,0.75);border:1px solid rgba(255,248,235,0.07);border-radius:1rem;overflow:hidden;min-height:280px">
+        <ShapeBlur client:load variation={1} shapeSize={0.6} circleSize={0.4} />
+        <div style="position:relative;z-index:20;padding:2.5rem 2rem">
+          <span style="font-size:0.75rem;color:rgba(201,168,76,0.6)">02</span>
+          <h3 style="color:rgba(255,255,255,0.88);margin:1rem 0 0.5rem">Variation 1 — Filled Circle</h3>
+          <p style="color:rgba(255,255,255,0.4);font-size:0.875rem">填充圆形 + 鼠标光斑</p>
+        </div>
+      </div>
+      <div style="position:relative;background:rgba(24,22,20,0.75);border:1px solid rgba(255,248,235,0.07);border-radius:1rem;overflow:hidden;min-height:280px">
+        <ShapeBlur client:load variation={2} shapeSize={0.6} borderSize={0.02} circleSize={0.4} />
+        <div style="position:relative;z-index:20;padding:2.5rem 2rem">
+          <span style="font-size:0.75rem;color:rgba(201,168,76,0.6)">03</span>
+          <h3 style="color:rgba(255,255,255,0.88);margin:1rem 0 0.5rem">Variation 2 — Stroke Circle</h3>
+          <p style="color:rgba(255,255,255,0.4);font-size:0.875rem">描边圆环 + 鼠标光斑</p>
+        </div>
+      </div>
+      <div style="position:relative;background:rgba(24,22,20,0.75);border:1px solid rgba(255,248,235,0.07);border-radius:1rem;overflow:hidden;min-height:280px">
+        <ShapeBlur client:load variation={3} shapeSize={0.3} circleSize={0.35} />
+        <div style="position:relative;z-index:20;padding:2.5rem 2rem">
+          <span style="font-size:0.75rem;color:rgba(201,168,76,0.6)">04</span>
+          <h3 style="color:rgba(255,255,255,0.88);margin:1rem 0 0.5rem">Variation 3 — Triangle</h3>
+          <p style="color:rgba(255,255,255,0.4);font-size:0.875rem">三角形状 + 鼠标光斑</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 大卡 -->
+    <div style="position:relative;background:rgba(24,22,20,0.75);border:1px solid rgba(255,248,235,0.07);border-radius:1rem;overflow:hidden;min-height:400px">
+      <ShapeBlur client:load variation={0} shapeSize={0.65} borderSize={0.03} circleSize={0.5} circleEdge={0.8} />
+      <div style="position:relative;z-index:20;padding:3rem">
+        <span style="font-size:0.75rem;color:rgba(201,168,76,0.6)">FOCUS</span>
+        <h2 style="font-family:'CangJiGaoDeGuoMiaoHei',sans-serif;font-size:3rem;color:rgba(255,255,255,0.9);margin:1rem 0">ShapeBlur 大卡</h2>
+        <p style="color:rgba(255,255,255,0.55);font-size:1.125rem;max-width:500px">更大光斑 + 更柔边缘</p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

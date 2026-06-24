@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/film-hero.css';
+
+const images = [
+  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=880&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=880&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=880&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=880&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=880&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=880&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=880&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=880&h=600&fit=crop",
+];
+
+const dup = [...images, ...images];
+---
+
+<BaseLayout>
+  <div class="film-hero">
+
+    <!-- Filmstrip rows packed together -->
+    <div class="film-strips">
+      <div class="film-row film-row--top">
+        {dup.map((src, i) => (
+          <div class="film-tile">
+            <img src={src} alt={`Gallery ${i + 1}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+      <div class="film-row film-row--bottom">
+        {dup.map((src, i) => (
+          <div class="film-tile">
+            <img src={src} alt={`Gallery ${i + 1}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Edge veils -->
+    <div class="film-veil-left"></div>
+    <div class="film-veil-right"></div>
+
+    <!-- Center glass card -->
+    <div class="film-card">
+      <h1 class="film-title">
+        视觉叙事
+        <span>相册展示</span>
+      </h1>
+      <a href="/gallery" class="film-btn">
+        浏览全部
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

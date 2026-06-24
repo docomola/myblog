@@ -23,6 +23,7 @@ import { defineConfig, envField } from 'astro/config';
 import { loadEnv } from 'vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 
 /**
  * Load environment variables from .env file
@@ -57,6 +58,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
+    react(),
   ],
   
   /**
