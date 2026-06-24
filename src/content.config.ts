@@ -201,7 +201,7 @@ const journeyCollection = defineCollection({
  * - Optional tags for categorization
  */
 const writingCollection = defineCollection({
-  loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
     /** Article title */
     title: z.string(),
