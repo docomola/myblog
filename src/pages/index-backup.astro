@@ -28,7 +28,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SEO from '../components/SEO.astro';
 import StructuredData from '../components/StructuredData.astro';
-import ForwardLink from '../components/ForwardLink.astro';
 import SocialIcons from '../components/SocialIcons.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../config';
@@ -217,7 +216,7 @@ const galleryPreview = allAlbums
     <div class="film-hero">
       <div class="film-strips">
         <div class="film-row film-row--top">
-          {[...galleryPreview, ...galleryPreview].map((item, i) => (
+          {[...galleryPreview, ...galleryPreview].map((item, _) => (
             <a href={'/gallery/' + item.id} class="film-tile">
               {item.data.cover ? (
                 <img src={item.data.cover} alt={item.data.title} loading="lazy" />
@@ -230,7 +229,7 @@ const galleryPreview = allAlbums
           ))}
         </div>
         <div class="film-row film-row--bottom">
-          {[...galleryPreview, ...galleryPreview].map((item, i) => (
+          {[...galleryPreview, ...galleryPreview].map((item, _) => (
             <a href={'/gallery/' + item.id} class="film-tile">
               {item.data.cover ? (
                 <img src={item.data.cover} alt={item.data.title} loading="lazy" />
